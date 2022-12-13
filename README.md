@@ -4,6 +4,14 @@
 
 In the project directory, you can run:
 
+### `nvm i 16.15.0`
+
+install node v16.15.0
+
+### `nvm use 16.15.0`
+
+use node v16.15.0
+
 ### `npm i`
 
 to install all dist in this project

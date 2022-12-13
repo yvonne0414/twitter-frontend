@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --heading-weight: 700;
+}
+
+/* ============ 字體 ============ */
+/* 標題 */
+.heading-h1 {
+  font-weight: var(--heading-weight);
+  font-size: 68px;
+  line-height: 78px;
+}
+.heading-h2 {
+  font-weight: var(--heading-weight);
+  font-size: 42px;
+  line-height: 52px;
+}
+.heading-h3 {
+  font-weight: var(--heading-weight);
+  font-size: 28px;
+  line-height: 26px;
+}
+.heading-h4 {
+  font-weight: var(--heading-weight);
+  font-size: 42px;
+  line-height: 52px;
+}
+.heading-h5 {
+  font-weight: var(--heading-weight);
+  font-size: 28px;
+  line-height: 26px;
+}
+/* 內文 */
+/* 基本文字大小 */
+.content-l-r {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+}
+/* 基本文字粗體 */
+.content-l-b {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+}
+/* 次要文字 */
+.content-m-r {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+/* 次要文字粗體 */
+.content-m-b {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+/* 最小文字 */
+.content-s-r {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
+/* 最小文字粗體 */
+.content-s-b {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+}
