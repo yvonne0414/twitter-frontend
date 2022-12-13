@@ -70,3 +70,21 @@
   font-size: 12px;
   line-height: 20px;
 }
+
+/* ============ wraper ============ */
+.wraper {
+  width: 100%;
+  max-width: 337px;
+  padding: 24px;
+}
+@media screen and (min-width: 992px) {
+  .wraper {
+    max-width: 960px;
+    padding: unset;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .wraper {
+    max-width: 1140px;
+  }
+}
