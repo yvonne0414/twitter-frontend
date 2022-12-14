@@ -76,6 +76,7 @@
   width: 100%;
   max-width: 337px;
   padding: 24px;
+  margin: auto;
 }
 @media screen and (min-width: 992px) {
   .wraper {
