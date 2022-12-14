@@ -1,5 +1,9 @@
 # twitter-frontend-202212
 
+## VScode 
+需下載 "Prettier ESLint"並選其作為格式化工具
+
+
 ## Available Scripts
 
 In the project directory, you can run:
