@@ -4,7 +4,7 @@ const AuthInputs = ({ requiredDatas, onChange }) => {
   return (
     <div>
       {requiredDatas.map((requiredData) => {
-        return <Input requiredData={requiredData} key={requiredData.id} onChange={() => onChange(requiredData.id)} />;
+        return <Input requiredData={requiredData} key={requiredData.id} onChange={(value) => onChange({ id: requiredData.id, value: value })} />;
       })}
     </div>
   );

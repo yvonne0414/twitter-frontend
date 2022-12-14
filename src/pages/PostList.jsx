@@ -10,6 +10,7 @@ const requiredDatas = [
     disabled: true,
     invalid: false,
     errorMessage: '帳號不存在跟重複 等後台傳',
+    textLimit: '',
   },
   {
     title: '名稱',
@@ -18,6 +19,7 @@ const requiredDatas = [
     disabled: false,
     invalid: false,
     errorMessage: '字數超過上限！',
+    textLimit: 50,
   },
   {
     title: 'Email',
@@ -26,6 +28,7 @@ const requiredDatas = [
     disabled: false,
     invalid: true,
     errorMessage: '信箱已重複註冊！',
+    textLimit: '',
   },
   {
     title: ' 密碼',
@@ -34,6 +37,7 @@ const requiredDatas = [
     disabled: false,
     invalid: true,
     errorMessage: '內容不可空白',
+    textLimit: '',
   },
   {
     title: ' 確認密碼',
@@ -42,6 +46,7 @@ const requiredDatas = [
     disabled: false,
     invalid: true,
     errorMessage: '確認密碼不一致！',
+    textLimit: '',
   },
 ];
 
