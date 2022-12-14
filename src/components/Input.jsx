@@ -14,7 +14,7 @@ const Input = ({ requiredData, onChange }) => {
       <input
         value={inputValue}
         disabled={requiredData.disabled}
-        class={`content-l-r w-full h-[30px] mr-3 px-2  border-b-2   appearance-none bg-dark-25  leading-tight focus:outline-none  placeholder-dark-60 text-dark-100 disabled:border-dark-0 ${
+        class={`content-l-r w-full h-[30px] mr-3 px-2  border-b-2   appearance-none bg-dark-25  leading-tight focus:outline-none  placeholder-dark-60 text-dark-100 disabled:border-dark-50 ${
           requiredData.invalid ? 'border-error' : 'border-dark-80 hover:border-secondary-b focus:border-secondary-b'
         }`}
         type="text"
