@@ -7,20 +7,10 @@ import notiI from '../assets/imgs/icon/noti_i.png';
 import { useState } from 'react';
 
 const Notification = ({type, text}) => {
-  const [notificationFlag, setNotificationFlag] = useState(false);
-  
-  function showNotification() {
-    setNotificationFlag(true)
-    let showNotificationTimeout = setTimeout(closeNotification,8000)
-  }
-  function closeNotification() {
-    setNotificationFlag(false)
-  }
-
-
   let haveIcon = true; // 是否有icon
   let cBorederColor = ""; // icon外圈顏色
   let cIcon; // icon圖案
+
   switch (type){
     case "success":
       cBorederColor = "secondary-g";
@@ -42,7 +32,7 @@ const Notification = ({type, text}) => {
       haveIcon = false;
   }
   return (
-    <div className="rounded-[8px] bg-dark-0 shadow-[0px_4px_4px_rgba(51,51,51,0.04),0px_4px_16px_rgba(51,51,51,0.08)] px-6 py-5 w-[394px] h-[96px] flex items-center justify-between absolute right-1 top-1 transition">
+    <div className="rounded-[8px] bg-dark-0 shadow-[0px_4px_4px_rgba(51,51,51,0.04),0px_4px_16px_rgba(51,51,51,0.08)] px-6 py-5 w-[394px] h-[96px] flex items-center justify-between transition mx-auto">
       <div className="font-bold text-xl leading-7">{text}</div>
       {
         haveIcon &&
@@ -50,7 +40,7 @@ const Notification = ({type, text}) => {
           <img src={cIcon} alt="" className='w-full h-full object-contain' />
         </div>)
       }
-      <div className='hidden border-secondary-g border-secondary-o border-secondary-b'></div>
+      {/* <div className='hidden border-secondary-g border-secondary-o border-secondary-b'></div> */}
     </div>
   );
 };

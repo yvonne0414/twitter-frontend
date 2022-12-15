@@ -1,14 +1,18 @@
-import { PostItem, Notification, Navbar } from '../components';
+import { PostItem, NotificationCollection, Navbar } from '../components';
 import AuthInputs from '../components/AuthInputs';
 import Button from '../components/Button';
+import { useContext } from 'react';
+import { notifyContext } from '../contexts/NotifyContext';
 
 const PostList = () => {
+  const { showNotification } = useContext(notifyContext)
   return (
     <>
+      <button onClick={()=>{showNotification("warn", "test")}}>notify test</button>
       <div className="font">PostList</div>
       <PostItem />
       <Button text="跟隨" outline={true} />
-      <Notification type="warn" text="警告！！！" />
+      <NotificationCollection />
       <Navbar haveBack={true} title="推文" />
       <Navbar title="推文2" />
     </>
