@@ -52,12 +52,15 @@ const requiredDatas = [
 ];
 
 const SignUpPage = () => {
+  function handleRegistBtnClicked() {
+    alert('註冊成功！');
+  }
   return (
     <div className={`flex flex-col items-center`}>
       <img src={ACLogo} className={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
       <p className={`h-[33px] text-[#1C1C1C] heading-h3 text-center mt-6 mb-[32px]`}>建立你的帳號</p>
       <AuthInputs requiredDatas={requiredDatas} />
-      <Button text={'註冊'} width={`w-[356px]`} height={`h-[46px]`} />
+      <Button onClick={handleRegistBtnClicked} text={'註冊'} width={`w-[356px]`} height={`h-[46px]`} />
       <div className={`w-[356px] flex justify-center	mt-4 py-1.5`}>
         <Link to="/login" className={`content-l-r text-primary underline underline-offset-2	`}>
           取消
