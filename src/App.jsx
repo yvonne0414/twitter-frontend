@@ -2,6 +2,7 @@ import './global.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import { PostList } from './pages';
+import SignUpPage from './pages/SignUpPage';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="*" element={<PostList />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path='/regist' element={<SignUpPage/>}/>
         </Routes>
       </BrowserRouter>
     </div>

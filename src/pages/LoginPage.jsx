@@ -59,7 +59,7 @@ const LoginPage = () => {
       <AuthInputs requiredDatas={requiredDatas} />
       <Button text={'登入'} width={`w-[356px]`} height={`h-[46px]`} />
       <div className={`w-[356px] flex justify-end	mt-4 py-1.5`}>
-        <Link to="/register" className={`content-l-r text-primary underline underline-offset-2	`}>
+        <Link to="/regist" className={`content-l-r text-primary underline underline-offset-2	`}>
           註冊
         </Link>
         <p className={`mx-3`}>・</p>
