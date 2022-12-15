@@ -53,17 +53,17 @@ const requiredDatas = [
 
 const LoginPage = () => {
   return (
-    <div class={`flex flex-col items-center`}>
-      <img src={ACLogo} class={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
-      <p class={`h-[33px] text-[#1C1C1C] heading-h3 text-center mt-6 mb-[40px]`}>登入Alphitter</p>
+    <div className={`flex flex-col items-center`}>
+      <img src={ACLogo} className={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
+      <p className={`h-[33px] text-[#1C1C1C] heading-h3 text-center mt-6 mb-[40px]`}>登入Alphitter</p>
       <AuthInputs requiredDatas={requiredDatas} />
       <Button text={'登入'} width={`w-[356px]`} height={`h-[46px]`} />
-      <div class={`w-[356px] flex justify-end	mt-4 py-1.5`}>
-        <Link to="/register" class={`content-l-r text-primary underline underline-offset-2	`}>
+      <div className={`w-[356px] flex justify-end	mt-4 py-1.5`}>
+        <Link to="/register" className={`content-l-r text-primary underline underline-offset-2	`}>
           註冊
         </Link>
-        <p class={`mx-3`}>・</p>
-        <Link to="/admin/login" class={`content-l-r text-primary underline underline-offset-2	`}>
+        <p className={`mx-3`}>・</p>
+        <Link to="/admin/login" className={`content-l-r text-primary underline underline-offset-2	`}>
           後台登入
         </Link>
       </div>
