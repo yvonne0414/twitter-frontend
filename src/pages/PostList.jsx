@@ -4,6 +4,9 @@ import Button from '../components/Button';
 import { useContext } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
 
+import SideBar from '../components/SideBar';
+
+
 const PostList = () => {
   const { showNotification } = useContext(notifyContext)
   return (
@@ -15,6 +18,7 @@ const PostList = () => {
       <NotificationCollection />
       <Navbar haveBack={true} title="推文" />
       <Navbar title="推文2" />
+      <SideBar/>
     </>
   );
 };
