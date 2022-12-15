@@ -71,6 +71,12 @@
   line-height: 20px;
 }
 
+.content-login-btn {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+}
+
 /* ============ wraper ============ */
 .wraper {
   width: 100%;
