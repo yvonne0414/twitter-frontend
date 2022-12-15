@@ -1,5 +1,5 @@
 import PostItem from './PostItem';
-import Notification from './Notification';
 import Navbar from './Navbar';
+import NotificationCollection from './NotificationCollection';
 
-export { PostItem, Notification, Navbar };
+export { PostItem, Navbar, NotificationCollection };
