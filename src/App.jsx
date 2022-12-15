@@ -5,7 +5,7 @@ import { PostList } from './pages';
 
 function App() {
   return (
-    <div className="app">
+    <div className="wraper">
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<PostList />} />

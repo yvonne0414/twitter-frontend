@@ -22,8 +22,27 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "eslint:recommended"
+    ],
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "plugins": [
+      "react-hooks"
+    ],
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "no-undef": "off",
+      "no-unused-vars": "off",
+      "no-restricted-globals": "off"
+    }
   },
   "browserslist": {
     "production": [
@@ -39,11 +58,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
-    "eslint": "^8.29.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.20",
-    "prettier-eslint": "^15.0.1",
     "tailwindcss": "^3.2.4"
   }
 }
