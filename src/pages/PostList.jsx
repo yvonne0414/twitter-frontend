@@ -3,8 +3,7 @@ import AuthInputs from '../components/AuthInputs';
 import Button from '../components/Button';
 import { useContext } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
-
-import SideBar from '../components/SideBar';
+import UserSideBar from '../components/UserSideBar';
 
 
 const PostList = () => {
@@ -19,7 +18,7 @@ const PostList = () => {
       <Navbar haveBack={true} title="推文" />
       <Navbar title="推文2" />
 
-      <SideBar/>
+      <UserSideBar/>
       <PostNew />
 
     </>
