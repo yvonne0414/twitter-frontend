@@ -1,4 +1,4 @@
-import { PostItem, NotificationCollection, Navbar } from '../components';
+import { PostItem, NotificationCollection, Navbar, PostNew } from '../components';
 import AuthInputs from '../components/AuthInputs';
 import Button from '../components/Button';
 import { useContext } from 'react';
@@ -18,7 +18,10 @@ const PostList = () => {
       <NotificationCollection />
       <Navbar haveBack={true} title="推文" />
       <Navbar title="推文2" />
+
       <SideBar/>
+      <PostNew />
+
     </>
   );
 };
