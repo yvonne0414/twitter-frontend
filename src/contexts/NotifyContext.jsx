@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export const notifyContext = React.createContext();
 
@@ -6,12 +7,12 @@ export function NotifyContextProvider({ children }) {
     const [list, setList] = useState([]);
 
     /**
-     * 
+     * 開啟
      * @param {string} type 種類
      * @param {string} disc 通知訊息
      */
     function showNotification(type, disc) {
-        let id = parseInt(Math.random()*100+1,10)
+        let id = uuidv4();
         setList([...list, {id, type, disc}])
     }
 
