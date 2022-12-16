@@ -121,7 +121,6 @@ const PostList = () => {
       <Navbar haveBack={true} title="推文" />
       <Navbar title="推文2" />
       <PostNew />
-<
       <UserSideBar />
       <AdminSideBar/>
 
