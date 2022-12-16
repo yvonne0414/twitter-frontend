@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
 import SideBarItem from './SideBarItem';
 
@@ -18,12 +19,17 @@ const buttonDatas = [
   },
 ];
 const AdminSideBar = () => {
+  const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState('設定');
   function handleButtonClicked(title) {
     if (title === '登出') {
       logout();
+      navigate('/login');
       return;
-    }
+    } else if (title === '推文清單') {
+      navigate('/admin_main');
+    } else if (title === '使用者列表') {
+      navigate('/admin_users');}
     setActiveItem(title);
   }
   function logout() {

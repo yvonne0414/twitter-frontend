@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
 import Button from './Button';
 import PostNew from './PostNew';
@@ -25,22 +26,27 @@ const buttonDatas = [
   },
 ];
 const UserSideBar = () => {
+  const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState('設定');
   function handleButtonClicked(title) {
     if (title === '登出') {
       logout();
+      navigate('/login');
       return;
-    } 
-    setActiveItem(title)
+    } else if  (title === '首頁'){
+      navigate('/main');
+    } else if (title === '個人資料'){
+      navigate('/user/self');
+    } else {navigate('/setting')}
   }
   function logout() {
-    alert("Logout success ~~~~~~~")
+    alert('Logout success ~~~~~~~');
   }
   function handlePostButtonClicked() {
-    alert("Post New")
+    alert('Post New');
   }
   return (
-    <div className={`w-[178px] h-full flex flex-col`}> 
+    <div className={`w-[178px] h-full flex flex-col`}>
       <img src={ACLogo} className={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
       {buttonDatas.map((buttonData) => {
         return (
@@ -58,5 +64,5 @@ const UserSideBar = () => {
       <SideBarItem title="登出" iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
     </div>
   );
-}
+};
 export default UserSideBar;
