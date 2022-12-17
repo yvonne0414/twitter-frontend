@@ -1,3 +1,6 @@
-import PostList from './PostList';
+import PostListPage from './PostListPage';
+import AdminLoginPage from './AdminLoginPage';
+import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
 
-export { PostList };
+export { PostListPage, AdminLoginPage, LoginPage, SignUpPage };
