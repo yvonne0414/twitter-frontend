@@ -7,7 +7,7 @@ const Navbar = ({haveBack = false, title}) => {
   const navigate = useNavigate();
 
   return (
-    <nav className="bg-dark-0 w-full border-b border-borderC flex items-center px-6 py-8 mb-4">
+    <nav className="bg-dark-0 w-full border-b border-borderC flex items-center p-6 mb-4">
       {
         haveBack && (
           <div className="w-[17px] h-[14px] mr-[19px] cursor-pointer">

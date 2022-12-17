@@ -1,10 +1,6 @@
-import { PostItem, NotificationCollection, Navbar, PostNew, Tabs, PopularCollection, PostCollection } from '../components';
-import AuthInputs from '../components/AuthInputs';
-import Button from '../components/Button';
+import { PostItem, Navbar, PostNew, Tabs, PopularCollection, PostCollection, Button, UserSideBar } from '../components';
 import { useContext } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
-import UserSideBar from '../components/UserSideBar';
-import AdminSideBar from '../components/AdminSideBar';
 
 
 const tabListTest = [
@@ -100,43 +96,61 @@ const testPostList = [
         isLike: true,
         commentNum: 13,
         likeNum: 76
+    },
+     {
+        userId: 4,
+        avatar: '',
+        name: 'Apple',
+        account: '@apple',
+        postId: 4,
+        time: '3小時',
+        disc: 'Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. ',
+        isLike: true,
+        commentNum: 1,
+        likeNum: 7
+    },
+    {
+        userId: 5,
+        avatar: '',
+        name: 'Jane Cathy',
+        account: '@iamjane1999',
+        postId: 5,
+        time: '小時',
+        disc: 'Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. ',
+        isLike: false,
+        commentNum: 12,
+        likeNum: 88
+    },
+    {
+        userId: 6,
+        avatar: '',
+        name: 'Apple3',
+        account: '@apple3',
+        postId: 6,
+        time: '2小時',
+        disc: 'Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. ',
+        isLike: true,
+        commentNum: 13,
+        likeNum: 76
     }
 ]
 
-const PostList = () => {
+const PostListPage = () => {
   const { showNotification } = useContext(notifyContext)
   return (
-    <>
-      <button
-        onClick={() => {
-          showNotification('warn', 'test');
-        }}
-      >
-        notify test
-      </button>
-      <div className="font">PostList</div>
-      <PostItem />
-      <Button text="跟隨" outline={true} />
-      <NotificationCollection />
-      <Navbar haveBack={true} title="推文" />
-      <Navbar title="推文2" />
-      <PostNew />
-      <UserSideBar />
-      <AdminSideBar/>
-
-      <Tabs tabList={tabListTest}>
-          <div tabid={"tab1"} >
-            <PostCollection postList={testPostList} />
-          </div>
-          <div tabid={"tab2"} >tab2 content</div>
-          <div tabid={"tab3"} >tab3 content</div>
-      </Tabs>
-      <div className='w-80'>
+    <div className='flex justify-between'>
+      <aside className='h-screen pt-4'>
+        <UserSideBar />
+      </aside>
+      <main  className='h-screen overflow-auto border-x border-borderC mx-6'>
+        <Navbar title={"首頁"} />
+        <PostNew />
+        <PostCollection postList={testPostList} />
+      </main>
+      <aside className='h-screen pt-4'>
         <PopularCollection title={"推薦追蹤"} userInfoList={userInfoList}/>
-      </div>
-      
-
-    </>
+      </aside>
+    </div>
   );
 };
-export default PostList;
+export default PostListPage;

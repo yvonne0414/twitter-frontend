@@ -21,6 +21,11 @@ const PostItem = ({postInfo}) => {
   },[postInfo?.isLike])
   
   function handleLike() {
+    if (isLike) {
+      postInfo.likeNum--
+    } else {
+      postInfo.likeNum++
+    }
     setIsLike(!isLike)
   }
 
