@@ -3,6 +3,9 @@ import AuthInputs from '../components/AuthInputs';
 import Button from '../components/Button';
 import { useContext } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
+import UserSideBar from '../components/UserSideBar';
+import AdminSideBar from '../components/AdminSideBar';
+
 
 const tabListTest = [
   {
@@ -104,7 +107,13 @@ const PostList = () => {
   const { showNotification } = useContext(notifyContext)
   return (
     <>
-      <button onClick={()=>{showNotification("warn", "test")}}>notify test</button>
+      <button
+        onClick={() => {
+          showNotification('warn', 'test');
+        }}
+      >
+        notify test
+      </button>
       <div className="font">PostList</div>
       <PostItem />
       <Button text="跟隨" outline={true} />
@@ -112,6 +121,9 @@ const PostList = () => {
       <Navbar haveBack={true} title="推文" />
       <Navbar title="推文2" />
       <PostNew />
+      <UserSideBar />
+      <AdminSideBar/>
+
       <Tabs tabList={tabListTest}>
           <div tabid={"tab1"} >
             <PostCollection postList={testPostList} />
@@ -123,6 +135,7 @@ const PostList = () => {
         <PopularCollection title={"推薦追蹤"} userInfoList={userInfoList}/>
       </div>
       
+
     </>
   );
 };
