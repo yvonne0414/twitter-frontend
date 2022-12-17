@@ -1,64 +1,8 @@
-import { PostItem, Navbar, PostNew, Tabs, PopularCollection, PostCollection, Button, UserSideBar } from '../components';
-import { useContext } from 'react';
+import { Navbar, PostNew, PopularCollection, PostCollection, UserSideBar } from '../components';
+import { useContext, useEffect, useState } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
+import { getUserTop10 } from '../apis/user';
 
-
-const tabListTest = [
-  {
-      title: "推文",
-      tabid: "tab1",
-      isActive: true,
-  },
-  {
-      title: "回應",
-      tabid: "tab2",
-      isActive: false,
-  }
-  ,
-  {
-      title: "喜歡的內容",
-      tabid: "tab3",
-      isActive: false,
-  }
-]
-
-const userInfoList = [
-  {
-    id:1,
-    avatar:'',
-    name:'Pizza Hut',
-    account: '@pizzahut',
-    isActive: false
-  },
-  {
-    id:2,
-    avatar:'',
-    name:'Pizza Hut',
-    account: '@McDona',
-    isActive: false
-  },
-  {
-    id:3,
-    avatar:'',
-    name:'L\'Oréal',
-    account: '@Loreal',
-    isActive: false
-  },
-  {
-    id:4,
-    avatar:'',
-    name:'Nintendo',
-    account: '@Nintendo',
-    isActive: true
-  },
-  {
-    id:5,
-    avatar:'',
-    name:'MasterCard',
-    account: '@MasterCard',
-    isActive: false
-  },
-]
 
 const testPostList = [
     {
@@ -136,7 +80,18 @@ const testPostList = [
 ]
 
 const PostListPage = () => {
-  const { showNotification } = useContext(notifyContext)
+  const { showNotification } = useContext(notifyContext);
+  const [userTop10, setUserTop10] = useState([])
+
+  useEffect(()=>{
+    async function getPopularInfoList(){
+      const top10 = await getUserTop10();
+      setUserTop10(top10)
+      // console.log('top10', top10);
+    }
+    getPopularInfoList();
+  },[])
+  
   return (
     <div className='flex justify-between'>
       <aside className='h-screen pt-4'>
@@ -148,7 +103,7 @@ const PostListPage = () => {
         <PostCollection postList={testPostList} />
       </main>
       <aside className='h-screen pt-4'>
-        <PopularCollection title={"推薦追蹤"} userInfoList={userInfoList}/>
+        <PopularCollection title={"推薦追蹤"} userInfoList={userTop10}/>
       </aside>
     </div>
   );

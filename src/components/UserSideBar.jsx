@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
-import {Button, SideBarItem} from './index'
+import {PostModal, SideBarItem} from './index'
 
 const buttonDatas = [
   {
@@ -64,7 +64,9 @@ const UserSideBar = () => {
           />
         );
       })}
-      <Button text={'推文'} onClick={handlePostButtonClicked} />
+      {/* <Button text={'推文'} onClick={handlePostButtonClicked} /> */}
+      <PostModal />
+      
       <SideBarItem title="登出" iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
     </div>
   );

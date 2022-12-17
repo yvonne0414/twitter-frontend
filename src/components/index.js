@@ -14,6 +14,7 @@ import PostItem from './PostItem';
 import UserSideBar from './UserSideBar';
 import SideBarItem from './SideBarItem';
 import AdminSideBar from './AdminSideBar';
+import PostModal from './PostModal';
 
 export {
   AuthInputs,
@@ -32,4 +33,5 @@ export {
   UserSideBar,
   SideBarItem,
   AdminSideBar,
+  PostModal,
 };
