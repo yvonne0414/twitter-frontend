@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { NotificationCollection } from "../components";
 
 export const notifyContext = React.createContext();
 
@@ -31,6 +32,7 @@ export function NotifyContextProvider({ children }) {
             deleteNotify
           }}
         >
+          <NotificationCollection />
           {children}
         </notifyContext.Provider>
       );

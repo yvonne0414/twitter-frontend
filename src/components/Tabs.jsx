@@ -20,7 +20,7 @@ const Tabs = ({tabList, children}) => {
                 {
                     tabList.map((tabItem)=>{
                         return (
-                            <li className={`w-32 text-center leading-[52px] cursor-pointer  hover:text-brand hover:border-brand hover:border-b-2 ${tabItem.isActive && 'text-brand border-brand border-b-2'}`} data-tabid={tabItem.tabid} onClick={handleTabChange}>{tabItem.title}</li>
+                            <li className={`w-32 text-center leading-[52px] cursor-pointer  hover:text-brand hover:border-brand hover:border-b-2 ${tabItem.isActive && 'text-brand border-brand border-b-2'}`} data-tabid={tabItem.tabid} onClick={handleTabChange} key={tabItem.tabid} >{tabItem.title}</li>
                         )
                     })
                 }

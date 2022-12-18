@@ -84,6 +84,12 @@
   padding: 24px;
   margin: auto;
 }
+@media screen and (min-width: 576px) {
+  .wraper {
+    max-width: unset;
+    padding: 0 16px;
+  }
+}
 @media screen and (min-width: 992px) {
   .wraper {
     max-width: 960px;

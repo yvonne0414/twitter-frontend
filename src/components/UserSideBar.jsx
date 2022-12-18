@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
-import Button from './Button';
-import PostNew from './PostNew';
-import SideBarItem from './SideBarItem';
+import {PostModal, SideBarItem} from './index'
 
 const buttonDatas = [
   {
@@ -27,7 +25,8 @@ const buttonDatas = [
 ];
 const UserSideBar = () => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('設定');
+  const [activeItem, setActiveItem] = useState('首頁');
+
   function handleButtonClicked(title) {
     if (title === '登出') {
       logout();
@@ -35,9 +34,14 @@ const UserSideBar = () => {
       return;
     } else if  (title === '首頁'){
       navigate('/main');
+      setActiveItem('首頁')
     } else if (title === '個人資料'){
       navigate('/user/self');
-    } else {navigate('/setting')}
+      setActiveItem('個人資料')
+    } else {
+      navigate('/setting')
+      setActiveItem('設定')
+    }
   }
   function logout() {
     alert('Logout success ~~~~~~~');
@@ -47,7 +51,7 @@ const UserSideBar = () => {
   }
   return (
     <div className={`w-[178px] h-full flex flex-col`}>
-      <img src={ACLogo} className={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
+      <img src={ACLogo} className={`w-[50px] h-[50px]`} alt="AC Logo" />
       {buttonDatas.map((buttonData) => {
         return (
           <SideBarItem
@@ -60,7 +64,9 @@ const UserSideBar = () => {
           />
         );
       })}
-      <Button text={'推文'} onClick={handlePostButtonClicked} />
+      {/* <Button text={'推文'} onClick={handlePostButtonClicked} /> */}
+      <PostModal />
+      
       <SideBarItem title="登出" iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
     </div>
   );

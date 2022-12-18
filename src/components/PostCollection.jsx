@@ -5,7 +5,6 @@ const PostCollection = ({postList}) => {
         <>
             {
                 postList.map((postInfo)=>{
-                    console.logpostInfo
                     return (
                         <PostItem postInfo={postInfo} key={postInfo.postId}></PostItem>
                     )
