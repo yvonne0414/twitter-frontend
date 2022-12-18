@@ -9,7 +9,7 @@ export const addFollow = async (userInfo) => {
     });
     return res.data;
   } catch (error) {
-    console.error('[Create Todo failed]: ', error);
+    console.error('[Create followship failed]: ', error);
   }
 };
 
@@ -18,6 +18,6 @@ export const deleteFollow = async (id) => {
     const res = await axiosInstance.delete(`${baseUrl}/followships/${id}`);
     return res.data;
   } catch (error) {
-    console.error('[Delete Todo failed]:', error);
+    console.error('[Delete followship failed]:', error);
   }
 };

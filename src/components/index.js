@@ -15,6 +15,9 @@ import UserSideBar from './UserSideBar';
 import SideBarItem from './SideBarItem';
 import AdminSideBar from './AdminSideBar';
 import PostModal from './PostModal';
+import PostMain from './PostMain';
+import ReplyCollection from './ReplyCollection';
+import ReplyItem from './ReplyItem';
 
 export {
   AuthInputs,
@@ -34,4 +37,7 @@ export {
   SideBarItem,
   AdminSideBar,
   PostModal,
+  PostMain,
+  ReplyCollection,
+  ReplyItem,
 };

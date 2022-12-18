@@ -41,7 +41,7 @@ const PopularItem = ({userInfo}) => {
             <Avatar style="mr-2" imgUrl={userInfo?.avatar}></Avatar>
             <div className='grow' >
                 <div className='content-l-b text-ellipsis overflow-hidden ... max-w-[83px]'>{userInfo?.name}</div>
-                <div className='content-m-r text-dark-70 text-ellipsis overflow-hidden ... max-w-[83px]'>{userInfo?.account}</div>
+                <div className='content-m-r text-dark-70 text-ellipsis overflow-hidden ... max-w-[83px]'>@{userInfo?.account}</div>
             </div>
             <Button text={buttonText} textStyle={'content-l-r whitespace-nowrap py-2 px-4'} outline={!isFollowing} onClick={handelFollow}></Button>
         </div>

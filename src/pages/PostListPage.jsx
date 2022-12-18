@@ -3,6 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
 import { getUserTop10 } from '../apis/user';
 
+import { getPostlist } from '../apis/tweet';
+
+
 
 const testPostList = [
     {
@@ -82,6 +85,7 @@ const testPostList = [
 const PostListPage = () => {
   const { showNotification } = useContext(notifyContext);
   const [userTop10, setUserTop10] = useState([])
+  const [postList, setPostList] = useState([])
 
   useEffect(()=>{
     async function getPopularInfoList(){
@@ -90,6 +94,13 @@ const PostListPage = () => {
       // console.log('top10', top10);
     }
     getPopularInfoList();
+
+    async function getPosts(){
+      const posts = await getPostlist();
+      setPostList(posts)
+      // console.log('top10', top10);
+    }
+    getPosts();
   },[])
   
   return (
@@ -100,7 +111,7 @@ const PostListPage = () => {
       <main  className='h-screen overflow-auto border-x border-borderC mx-6'>
         <Navbar title={"首頁"} />
         <PostNew />
-        <PostCollection postList={testPostList} />
+        <PostCollection postList={postList} />
       </main>
       <aside className='h-screen pt-4'>
         <PopularCollection title={"推薦追蹤"} userInfoList={userTop10}/>

@@ -25,7 +25,7 @@ const buttonDatas = [
 ];
 const UserSideBar = () => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('設定');
+  const [activeItem, setActiveItem] = useState('首頁');
 
   function handleButtonClicked(title) {
     if (title === '登出') {
