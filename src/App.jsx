@@ -1,6 +1,6 @@
 import './global.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PostListPage, LoginPage, SignUpPage, AdminLoginPage } from './pages';
+import { PostListPage, LoginPage, SignUpPage, AdminLoginPage, PostDetailPage } from './pages';
 import { NotifyContextProvider } from './contexts/NotifyContext';
 
 function App() {
@@ -12,7 +12,9 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/regist" element={<SignUpPage />} />
             <Route path="/admin" element={<AdminLoginPage />} />
-            <Route path="*" element={<PostListPage />} />
+            <Route path="/post/:postId" exact element={<PostDetailPage />}></Route>
+            <Route path="/post/:id" element={<PostDetailPage />} />
+            <Route path="/main" element={<PostListPage />} />
           </Routes>
         </BrowserRouter>
       </NotifyContextProvider>
