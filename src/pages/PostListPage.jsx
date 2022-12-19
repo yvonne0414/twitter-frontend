@@ -1,4 +1,4 @@
-import { Navbar, PostNew, PopularCollection, PostCollection, UserSideBar } from '../components';
+import { Navbar, PostNew, PopularCollection, PostCollection, UserSideBar, NotificationCollection } from '../components';
 import { useContext, useEffect, useState } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
 import { getUserTop10 } from '../apis/user';
@@ -116,6 +116,7 @@ const PostListPage = () => {
       <aside className='h-screen pt-4'>
         <PopularCollection title={"推薦追蹤"} userInfoList={userTop10}/>
       </aside>
+      <NotificationCollection />
     </div>
   );
 };
