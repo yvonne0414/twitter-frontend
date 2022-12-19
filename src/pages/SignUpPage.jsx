@@ -25,7 +25,7 @@ const requiredDatas = [
     disabled: false,
     invalid: false,
     errorMessage: '字數超過上限！',
-    textLimit: '',
+    textLimit: 50,
     value: '',
   },
   {
@@ -66,11 +66,14 @@ const SignUpPage = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-
-  function handleInputChange({id, value}) {
+  function handleInputChange({ id, value }) {
     const cloneDatas = [...datas];
     cloneDatas[id].invalid = false;
-    cloneDatas[id].value = value
+    cloneDatas[id].value = value;
+    if (datas[1].value.length > 50) {
+      cloneDatas[1].invalid = true;
+      cloneDatas[1].errorMessage = '字數超出上限！';
+    }
     setDatas(cloneDatas);
   }
 
@@ -87,7 +90,7 @@ const SignUpPage = () => {
         element.invalid = true;
         element.errorMessage = '此欄位必填！';
         precheckError = true;
-        hasEmpty = true
+        hasEmpty = true;
       }
       if (hasEmpty) {
         showNotification('error', '所有欄位都是必填！');
@@ -98,12 +101,19 @@ const SignUpPage = () => {
       cloneDatas[4].invalid = true;
       cloneDatas[4].errorMessage = '確認密碼與密碼不相同！';
       showNotification('error', '確認密碼與密碼不相同！');
-      precheckError = true
+      precheckError = true;
+    }
+
+    if (datas[1].value.length > 50) {
+      cloneDatas[1].invalid = true;
+      cloneDatas[1].errorMessage = '字數超出上限！';
+      showNotification('error', '名稱字數超出上限！');
+      precheckError = true;
     }
 
     if (precheckError) {
-      setDatas(cloneDatas)
-      return
+      setDatas(cloneDatas);
+      return;
     }
 
     const result = await register({
@@ -116,7 +126,7 @@ const SignUpPage = () => {
 
     if (result.status === 'success') {
       showNotification('註冊成功！');
-      navigate('/main')
+      navigate('/main');
     } else if (result.message === 'email 已重複註冊！') {
       cloneDatas[2].invalid = true;
       cloneDatas[2].errorMessage = 'email 已重複註冊！';
@@ -129,10 +139,10 @@ const SignUpPage = () => {
       setDatas(cloneDatas);
       showNotification('error', '帳號已重複註冊！');
       return;
-    } else if (result.message !== ''){ 
-      alert(result.message); 
+    } else if (result.message !== '') {
+      alert(result.message);
     } else {
-      alert('未知的錯誤')
+      alert('未知的錯誤');
     }
   }
 
