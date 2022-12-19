@@ -10,6 +10,7 @@ export const addFollow = async (userInfo) => {
     return res.data;
   } catch (error) {
     console.error('[Create followship failed]: ', error);
+    throw error.response.data.message;
   }
 };
 
@@ -19,5 +20,6 @@ export const deleteFollow = async (id) => {
     return res.data;
   } catch (error) {
     console.error('[Delete followship failed]:', error);
+    throw error.response.data.message;
   }
 };
