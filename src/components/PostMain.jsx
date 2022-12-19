@@ -1,9 +1,8 @@
 // img
 import likeIcon from '../assets/imgs/icon/like.png';
 import likeFullIcon from '../assets/imgs/icon/like_o.png';
-import replyIcon from '../assets/imgs/icon/reply.png';
 // component
-import { Avatar } from './index';
+import { Avatar, ReplyModal } from './index';
 // api
 import { addLike, addUnlike } from '../apis/tweet';
 import { useEffect, useState } from 'react';
@@ -20,7 +19,7 @@ const IconWraper = ({imgUrl, style="w-[25px] h-[25px]"}) => {
 };
 
 const PostMain = ({postInfo}) => {
-    console.log(postInfo);
+    // console.log(postInfo);
     const [isLike, setIsLike] = useState(false);
     const [postTime, setPostTime] = useState('')
     
@@ -56,7 +55,7 @@ const PostMain = ({postInfo}) => {
       setIsLike(!isLike)
     }
     return (
-        <div className='pb-5 px-4 border-b border-borderC mb-2'>
+        <div className='pb-5 px-4 border-b border-borderC mb-2 mt-4'>
           <div className='flex space-x-2'>
             <Avatar imgUrl={postInfo?.User.avatar} />
             <div>
@@ -64,7 +63,7 @@ const PostMain = ({postInfo}) => {
               <div className='content-m-r text-secondary'>@{postInfo?.User.account}</div>
             </div>
           </div>
-          <p className='text-2xl leading-9 font-normal mb-2'>
+          <p className='text-2xl leading-9 font-normal my-2'>
             {postInfo?.description} 
           </p>
           <div className='content-m-b text-secondary'>{postTime}</div>
@@ -74,7 +73,7 @@ const PostMain = ({postInfo}) => {
           </div>
           <div className="flex space-x-24 mt-5">
             <div className='flex space-x-2 items-center cursor-pointer'>
-              <IconWraper imgUrl={replyIcon} />
+              <ReplyModal iconStyle='w-[25px] h-[25px]' />
             </div>
             <div className='flex space-x-2 items-center cursor-pointer' onClick={handleLike}>
               {

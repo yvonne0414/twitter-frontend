@@ -6,7 +6,7 @@ const PostCollection = ({postList}) => {
             {
                 postList.map((postInfo)=>{
                     return (
-                        <PostItem postInfo={postInfo} key={postInfo.postId}></PostItem>
+                        <PostItem postInfo={postInfo} key={`post-${postInfo.id}`}></PostItem>
                     )
                 })
             }
