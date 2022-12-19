@@ -1,8 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Tabs = ({tabList, children}) => {
-    const [local, setLocal] = useState("tab1");
+    const [local, setLocal] = useState("");
+    
+    
+    useEffect(()=>{
+        let isActived = false;
+        tabList.forEach((tabInfo)=>{
+            if(tabInfo.isActive){
+                setLocal(tabInfo.tabid)
+                isActived = true
+            }
+        });
+        if(!isActived){
+            setLocal(tabList[0].tabid)
+        }
+        
+    },[tabList]);
 
     function handleTabChange(e){
         setLocal(e.target.dataset.tabid)

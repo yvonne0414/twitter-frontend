@@ -18,6 +18,11 @@ import PostModal from './PostModal';
 import PostMain from './PostMain';
 import ReplyCollection from './ReplyCollection';
 import ReplyItem from './ReplyItem';
+import ReplyModal from './ReplyModal';
+import FollowCollection from './FollowCollection';
+import FollowItem from './FollowItem';
+import UserLayout from './UserLayout';
+import Loading from './Loading';
 
 export {
   AuthInputs,
@@ -40,4 +45,9 @@ export {
   PostMain,
   ReplyCollection,
   ReplyItem,
+  ReplyModal,
+  FollowCollection,
+  FollowItem,
+  UserLayout,
+  Loading,
 };
