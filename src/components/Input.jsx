@@ -22,7 +22,7 @@ const Input = ({ requiredData, onChange }) => {
         onChange={handleInputChange}
       />
       <span className={`inline-block mt-2 ${requiredData.invalid ? 'visible' : 'invisible'}  text-error content-s-b  mt-1 h-[32px] w-[256px]`}> {requiredData.errorMessage}</span>
-      <span className={`text-dark-80 inline-block content-s-b w-[100px] text-right ${requiredData.textLimit ? 'visible' : 'invisible'}`}>
+      <span className={`text-dark-80 inline-block content-s-b w-[100px] text-right ${requiredData.textLimit && inputValue.length > 0 ? 'visible' : 'invisible'}`}>
         {inputValue.length}/{requiredData.textLimit}
       </span>
     </div>
