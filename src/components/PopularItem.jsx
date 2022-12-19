@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Avatar, Button } from './index';
 import { addFollow, deleteFollow } from '../apis/followship';
+import { useContext } from 'react';
+import { notifyContext } from '../contexts/NotifyContext';
 
 const PopularItem = ({userInfo}) => {
     const [buttonText, setButtonText] = useState('跟隨')
-    const [isFollowing, setIsFolloeing] = useState(userInfo?.isFollowed)
+    const [isFollowing, setIsFollowing] = useState(userInfo?.isFollowed)
+
+    // 通知
+    const { showNotification } = useContext(notifyContext);
     
     useEffect(()=>{
         if(isFollowing){
@@ -16,24 +21,20 @@ const PopularItem = ({userInfo}) => {
 
     async function handelFollow (){
         if(!isFollowing){
-            try {
-                // console.log('跟隨', userInfo.id);
-
-                await addFollow({
-                    id: userInfo.id
-                });
-            } catch (error) {
-                console.error(error);
-            }
+            await addFollow({
+                id: userInfo.id
+            }).then(()=>{
+                setIsFollowing(!isFollowing);
+            }).catch((errorMsg)=>{
+                showNotification('warn', errorMsg)
+            });
         } else {
-            try {
-                // console.log('不再跟隨', userInfo.id);
-                await deleteFollow(userInfo.id);
-            } catch (error) {
-                console.error(error);
-            }
+            await deleteFollow(userInfo.id).then(()=>{
+                setIsFollowing(!isFollowing);
+            }).catch((errorMsg)=>{
+                showNotification('warn', errorMsg)
+            });
         }
-        setIsFolloeing(!isFollowing);
     }
 
     return (
