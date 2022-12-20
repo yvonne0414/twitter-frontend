@@ -1,16 +1,18 @@
-import { Navbar, PostNew, PostCollection } from '../components';
+import { Navbar, PostNew, PostCollection, Loading } from '../components';
 import { useEffect, useState } from 'react';
 import { getPostlist } from '../apis/tweet';
 
 
 const PostListPage = () => {
   const [postList, setPostList] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(()=>{
+    setIsLoading(true)
     async function getPosts(){
       const posts = await getPostlist();
       setPostList(posts)
-      // console.log('top10', top10);
+      setIsLoading(false)
     }
     getPosts();
   },[])
@@ -19,7 +21,11 @@ const PostListPage = () => {
     <>
       <Navbar title={"首頁"} />
       <PostNew />
-      <PostCollection postList={postList} />
+      {
+        isLoading ?
+        <Loading /> :
+        <PostCollection postList={postList} />
+      }
     </>
   );
 };
