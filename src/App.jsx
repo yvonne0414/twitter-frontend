@@ -1,6 +1,6 @@
 import './global.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PostListPage, LoginPage, SignUpPage, AdminLoginPage, PostDetailPage, ProfilePage, ProfileFollowPage } from './pages';
+import { PostListPage, LoginPage, SignUpPage, AdminLoginPage, PostDetailPage, ProfilePage, ProfileFollowPage, AccountUpdate, ErrorPage } from './pages';
 import { UserLayout } from './components';
 import { NotifyContextProvider } from './contexts/NotifyContext';
 import { AuthProvider } from './contexts/AuthContext';
@@ -18,8 +18,9 @@ function App() {
               <Route path="/post/:postId" exact element={<UserLayout><PostDetailPage /></UserLayout>}/>
               <Route path="/profile" exact element={<UserLayout><ProfilePage /></UserLayout>}/>
               <Route path="/profile/follow" exact element={<UserLayout><ProfileFollowPage /></UserLayout>}/>
+              <Route path="/setting" element={<UserLayout><AccountUpdate /></UserLayout>} />
               <Route path="/main" element={<UserLayout><PostListPage /></UserLayout>} />
-              <Route path="*" element={<UserLayout><PostListPage /></UserLayout>} />
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
           </AuthProvider>
         </BrowserRouter>
