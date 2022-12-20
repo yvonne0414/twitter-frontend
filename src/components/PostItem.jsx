@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import likeIcon from '../assets/imgs/icon/like.png';
 import likeFullIcon from '../assets/imgs/icon/like_o.png';
-import replyIcon from '../assets/imgs/icon/reply.png';
-
-import { Avatar } from './index';
-
+import { Avatar, ReplyModal } from './index';
 import { useNavigate } from 'react-router-dom';
+import { addLike, addUnlike } from '../apis/tweet';
 
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
@@ -31,14 +29,24 @@ const PostItem = ({postInfo}) => {
     setIsLike(postInfo?.isLiked)
   },[postInfo?.isLiked])
   
-  function handleLike() {
-    if (isLike) {
-      postInfo.likeNum--
-    } else {
-      postInfo.likeNum++
+  async function handleLike() {
+      if (!isLike) {
+        try {
+            await addLike(postInfo.id);
+        } catch (error) {
+            console.error(error);
+        }
+        postInfo.likeCount++
+      } else {
+        try {
+            await addUnlike(postInfo.id);
+        } catch (error) {
+            console.error(error);
+        }
+        postInfo.likeCount--
+      }
+      setIsLike(!isLike)
     }
-    setIsLike(!isLike)
-  }
 
   const date1 = dayjs('2022-12-17T09:00:51.000Z');
   // const date1 = dayjs(postInfo?.createdAt);
@@ -63,19 +71,19 @@ const PostItem = ({postInfo}) => {
 
 
   return (
-    <div className='flex py-4 pl-6 pr-[29px] border-b border-borderC cursor-pointer' onClick={()=>{navigate(`/post/${postInfo?.id}`)}}>
+    <div className='flex py-4 pl-6 pr-[29px] border-b border-borderC'>
       <Avatar imgUrl={postInfo?.User.avatar} />
       <div className='ml-2'>
         <div className='flex space-x-2 items-center'>
           <h6 className='content-l-b'>{postInfo?.User.name}</h6>
-          <div className='content-m-r text-secondary'>{postInfo?.User.account}・{time}</div>
+          <div className='content-m-r text-secondary'><span className='cursor-pointer' onClick={()=>{navigate(`/profile`, {state:{userId: postInfo?.User.id}})}}>@{postInfo?.User.account}</span>・{time}</div>
         </div>
-        <p className='content-l-r mb-2'>
+        <p className='content-l-r mb-2 cursor-pointer'  onClick={()=>{navigate(`/post/${postInfo?.id}`)}}>
           {postInfo?.description} 
         </p>
         <div className="flex space-x-9 text-[14px] leading-[14px] font-semibold text-secondary">
           <div className='flex space-x-2 items-center cursor-pointer'>
-            <IconWraper imgUrl={replyIcon} />
+            <ReplyModal />
             <div>{postInfo?.replyCount}</div>
           </div>
           <div className='flex space-x-2 items-center cursor-pointer' onClick={handleLike}>

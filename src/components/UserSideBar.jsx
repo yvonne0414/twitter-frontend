@@ -36,7 +36,7 @@ const UserSideBar = () => {
       navigate('/main');
       setActiveItem('首頁')
     } else if (title === '個人資料'){
-      navigate('/user/self');
+      navigate(`/profile`, {state:{userId: 14}});
       setActiveItem('個人資料')
     } else {
       navigate('/setting')
