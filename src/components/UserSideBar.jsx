@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
 import {PostModal, SideBarItem} from './index'
 
@@ -9,39 +9,47 @@ const buttonDatas = [
     iconName: 'home',
     activeIconName: 'home_o',
     id: 0,
+    path: '/main'
   },
   {
     title: '個人資料',
     iconName: 'user',
     activeIconName: 'user_o',
     id: 1,
+    path: '/profile'
   },
   {
     title: '設定',
     iconName: 'setting',
     activeIconName: 'setting_o',
     id: 2,
+    path: '/setting'
   },
 ];
+
 const UserSideBar = () => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('首頁');
+  const {pathname, state} = useLocation();
+  const [activeItem, setActiveItem] = useState(0);
 
-  function handleButtonClicked(title) {
-    if (title === '登出') {
+  function handleButtonClicked(path) {
+    // 登出
+    if(path === '/logout'){
       logout();
       navigate('/login');
-      return;
-    } else if  (title === '首頁'){
-      navigate('/main');
-      setActiveItem('首頁')
-    } else if (title === '個人資料'){
-      navigate(`/profile`, {state:{userId: 14}});
-      setActiveItem('個人資料')
-    } else {
-      navigate('/setting')
-      setActiveItem('設定')
+      return
     }
+    // TODO state.userId 要等於現在用戶，目前先帶死
+    buttonDatas.forEach((btn)=>{
+
+      if(path === '/profile'){
+        navigate(`/profile`, {state:{userId: 14}});
+        return
+      }
+      if(path === btn.path){
+        navigate(btn.path)
+      }
+    })
   }
   function logout() {
     alert('Logout success ~~~~~~~');
@@ -49,6 +57,20 @@ const UserSideBar = () => {
   function handlePostButtonClicked() {
     alert('Post New');
   }
+
+  useEffect(()=>{
+    setActiveItem('')
+    buttonDatas.forEach((btn)=>{
+      if(pathname === '/profile'){
+        (state.userId === 14) && setActiveItem(1)
+        return
+      }
+      if(pathname === btn.path){
+        setActiveItem(btn.id)
+      }
+    })
+  }, [pathname, state])
+
   return (
     <div className={`w-[178px] h-full flex flex-col`}>
       <img src={ACLogo} className={`w-[50px] h-[50px]`} alt="AC Logo" />
@@ -56,9 +78,10 @@ const UserSideBar = () => {
         return (
           <SideBarItem
             title={buttonData.title}
+            path = {buttonData.path}
             iconName={buttonData.iconName}
             activeIconName={buttonData.activeIconName}
-            active={activeItem === buttonData.title}
+            active={activeItem === buttonData.id}
             onClick={handleButtonClicked}
             key={buttonData.id}
           />
@@ -67,7 +90,7 @@ const UserSideBar = () => {
       {/* <Button text={'推文'} onClick={handlePostButtonClicked} /> */}
       <PostModal />
       
-      <SideBarItem title="登出" iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
+      <SideBarItem title="登出" path={'/logout'} iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
     </div>
   );
 };

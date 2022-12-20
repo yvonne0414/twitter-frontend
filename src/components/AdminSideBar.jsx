@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
 import SideBarItem from './SideBarItem';
 
@@ -10,27 +10,35 @@ const buttonDatas = [
     iconName: 'home',
     activeIconName: 'home_o',
     id: 0,
+    path: '/admin/tweets'
   },
   {
     title: '使用者列表',
     iconName: 'user',
     activeIconName: 'user_o',
     id: 1,
+    path: '/admin/users'
   },
 ];
+
 const AdminSideBar = () => {
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState('設定');
-  function handleButtonClicked(title) {
-    if (title === '登出') {
+  const {pathname, state} = useLocation();
+  const [activeItem, setActiveItem] = useState(0);
+
+  function handleButtonClicked(path) {
+    // 登出
+    if(path === '/logout'){
       logout();
       navigate('/login');
-      return;
-    } else if (title === '推文清單') {
-      navigate('/admin_main');
-    } else if (title === '使用者列表') {
-      navigate('/admin_users');}
-    setActiveItem(title);
+      return
+    }
+    // TODO state.userId 要等於現在用戶，目前先帶死
+    buttonDatas.forEach((btn)=>{
+      if(path === btn.path){
+        navigate(btn.path)
+      }
+    })
   }
   function logout() {
     alert('Logout success ~~~~~~~');
@@ -38,6 +46,15 @@ const AdminSideBar = () => {
   function handlePostButtonClicked() {
     alert('Post New');
   }
+
+  useEffect(()=>{
+    setActiveItem('')
+    buttonDatas.forEach((btn)=>{
+      if(pathname === btn.path){
+        setActiveItem(btn.id)
+      }
+    })
+  }, [pathname, state])
   return (
     <div className={`w-[178px] h-full flex flex-col`}>
       <img src={ACLogo} className={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
@@ -45,15 +62,16 @@ const AdminSideBar = () => {
         return (
           <SideBarItem
             title={buttonData.title}
+            path = {buttonData.path}
             iconName={buttonData.iconName}
             activeIconName={buttonData.activeIconName}
-            active={activeItem === buttonData.title}
+            active={activeItem === buttonData.id}
             onClick={handleButtonClicked}
             key={buttonData.id}
           />
         );
       })}
-      <SideBarItem title="登出" iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
+      <SideBarItem title="登出" path={'/logout'} iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
     </div>
   );
 };
