@@ -40,7 +40,7 @@ const AdminSideBar = () => {
   }
   return (
     <div className={`w-[178px] h-full flex flex-col`}>
-      <img src={ACLogo} className={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
+      <img src={ACLogo} className={`w-[50px] h-[50px]`} alt="AC Logo" />
       {buttonDatas.map((buttonData) => {
         return (
           <SideBarItem

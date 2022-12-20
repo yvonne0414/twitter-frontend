@@ -4,6 +4,7 @@ import { PostListPage, LoginPage, SignUpPage, AdminLoginPage, PostDetailPage, Pr
 import { UserLayout } from './components';
 import { NotifyContextProvider } from './contexts/NotifyContext';
 import { AuthProvider } from './contexts/AuthContext';
+import AdminLayout from './components/AdminLayout';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
               <Route path="/regist" element={<SignUpPage />} />
               <Route path="/admin/login" element={<AdminLoginPage />} />
               {/* todo add admin main page */}
-              <Route path="/admin/main" element={<UserLayout><PostListPage /></UserLayout>} /> 
+              <Route path="/admin/main" element={<AdminLayout><PostListPage /></AdminLayout>} /> 
               <Route path="/post/:postId" exact element={<UserLayout><PostDetailPage /></UserLayout>}/>
               <Route path="/profile" exact element={<UserLayout><ProfilePage /></UserLayout>}/>
               <Route path="/profile/follow" exact element={<UserLayout><ProfileFollowPage /></UserLayout>}/>
