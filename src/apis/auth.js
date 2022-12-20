@@ -15,7 +15,20 @@ export const login = async ({ account, password }) => {
   }
 };
 
-// todo: change the api url
+export const adminLogin = async ({ account, password }) => {
+  try {
+    const res = await axiosInstance.post(`${baseUrl}/admin/users/login`, {
+      account: account,
+      password: password,
+    });
+
+    return res.data;
+  } catch (error) {
+    console.error('[Admin Login Failed]: ', error);
+    return error.response.data;
+  }
+};
+
 export const register = async ({ account, username, email, password, checkPassword }) => {
   try {
     const result = await axiosInstance.post(`${baseUrl}/users`, {
