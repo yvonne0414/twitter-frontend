@@ -9,3 +9,13 @@ export const getAdminPostlist = async () => {
     throw error.response.data;
   }
 };
+
+export const deletePost = async (id) => {
+  try {
+    const res = await axiosInstance.delete(`${baseUrl}/admin/tweets/${id}`);
+    return res.data;
+  } catch (error) {
+    console.error('[Delete Post failed]: ', error);
+    return error.response.data;
+  }
+};

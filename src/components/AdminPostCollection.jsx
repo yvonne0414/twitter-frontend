@@ -1,11 +1,14 @@
 import { PostItem, Empty, AdminPostItem } from './index';
 
-const AdminPostCollection = ({ postList }) => {
+const AdminPostCollection = ({ postList, onDeleteItem }) => {
+  function handleDeleteItem(id) {
+    onDeleteItem(id)
+  }
   return (
     <>
       {postList.length ? (
         postList.map((postInfo) => {
-          return <AdminPostItem postInfo={postInfo} key={`post-${postInfo.id}`}></AdminPostItem>;
+          return <AdminPostItem postInfo={postInfo} onDelete={handleDeleteItem} key={`post-${postInfo.id}`}></AdminPostItem>;
         })
       ) : (
         <Empty />

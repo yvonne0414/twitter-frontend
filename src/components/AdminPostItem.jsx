@@ -6,19 +6,20 @@ import deleteIcon from '../assets/imgs/icon/delete.png';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { deletePost } from '../apis/admin';
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.locale('cn');
 
-const IconWraper = ({ imgUrl, style = 'w-[14px] h-[14px]' }) => {
+const IconWraper = ({ imgUrl, onClick, style = 'w-[14px] h-[14px]' }) => {
   return (
-    <div className={`${style}`}>
+    <div className={`${style}`} onClick={onClick}>
       <img src={imgUrl} alt="" className="w-full h-full object-contain" />
     </div>
   );
 };
 
-const AdminPostItem = ({ postInfo }) => {
+const AdminPostItem = ({ postInfo, onDelete }) => {
   const [time, setTime] = useState('');
   const navigate = useNavigate();
 
@@ -42,6 +43,11 @@ const AdminPostItem = ({ postInfo }) => {
       setTime(`${diffWithMinute}分鐘`);
     }
   }, [diffWithYear, diffWithDay, diffWithHour, diffWithMinute]);
+
+  function handleDeleteButtonClicked() {
+    console.log("coffee")
+    onDelete(postInfo.id)
+  }
 
   return (
     <div className="flex py-4 pl-6 pr-[29px] border-b border-borderC relative">
@@ -70,7 +76,7 @@ const AdminPostItem = ({ postInfo }) => {
           {postInfo?.description}
         </p>
       </div>
-      <IconWraper imgUrl={deleteIcon} style="w-[15px] h-[15px] absolute top-[21.5px] right-[4.63px]" />
+      <IconWraper imgUrl={deleteIcon} style="w-[15px] h-[15px] absolute top-[21.5px] right-[4.63px]" onClick={handleDeleteButtonClicked}/>
     </div>
   );
 };
