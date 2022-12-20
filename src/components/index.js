@@ -23,6 +23,9 @@ import FollowCollection from './FollowCollection';
 import FollowItem from './FollowItem';
 import UserLayout from './UserLayout';
 import Loading from './Loading';
+import Empty from './Empty';
+import ProfileMain from './ProfileMain';
+import EditProfileModal from './EditProfileModal';
 
 export {
   AuthInputs,
@@ -50,4 +53,7 @@ export {
   FollowItem,
   UserLayout,
   Loading,
+  Empty,
+  ProfileMain,
+  EditProfileModal,
 };
