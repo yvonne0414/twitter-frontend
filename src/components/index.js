@@ -26,7 +26,8 @@ import Loading from './Loading';
 import Empty from './Empty';
 import ProfileMain from './ProfileMain';
 import EditProfileModal from './EditProfileModal';
-
+import AdminPostItem from './AdminPostItem';
+import AdminPostCollection from './AdminPostCollection';
 export {
   AuthInputs,
   Avatar,
@@ -56,4 +57,6 @@ export {
   Empty,
   ProfileMain,
   EditProfileModal,
+  AdminPostItem,
+  AdminPostCollection,
 };
