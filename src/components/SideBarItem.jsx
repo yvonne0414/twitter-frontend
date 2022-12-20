@@ -1,6 +1,6 @@
-const SideBarItem = ({ title, onClick, iconName, activeIconName, active, className}) => {
+const SideBarItem = ({ title, path, onClick, iconName, activeIconName, active, className}) => {
   function handleOnClick(e) {
-    onClick(title)
+    onClick(path)
   }
   return (
     <div onClick={handleOnClick} className={`flex items-center h-[66px] cursor-pointer ${className}`}>
