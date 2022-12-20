@@ -1,6 +1,6 @@
 import { Navbar, PostNew, PostCollection, Loading, AdminPostCollection } from '../components';
 import { useEffect, useState } from 'react';
-import { getPostlist } from '../apis/tweet';
+import { getAdminPostlist } from '../apis/admin';
 
 const AdminPostListPage = () => {
   const [postList, setPostList] = useState([]);
@@ -8,17 +8,17 @@ const AdminPostListPage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    async function getPosts() {
-      const posts = await getPostlist();
+    async function getAdminPosts() {
+      const posts = await getAdminPostlist();
       setPostList(posts);
       setIsLoading(false);
     }
-    getPosts();
+    getAdminPosts();
   }, []);
 
   return (
     <>
-      <Navbar title={'首頁'} />
+      <Navbar title={'推文清單'} />
       {isLoading ? <Loading /> : <AdminPostCollection postList={postList} />}
     </>
   );

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import likeIcon from '../assets/imgs/icon/like.png';
-import likeFullIcon from '../assets/imgs/icon/like_o.png';
-import { Avatar, ReplyModal } from './index';
+import { Avatar } from './index';
 import { useNavigate } from 'react-router-dom';
-import { addLike, addUnlike } from '../apis/tweet';
+import deleteIcon from '../assets/imgs/icon/delete.png';
 
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
@@ -21,32 +19,9 @@ const IconWraper = ({ imgUrl, style = 'w-[14px] h-[14px]' }) => {
 };
 
 const AdminPostItem = ({ postInfo }) => {
-  const [isLike, setIsLike] = useState(false);
   const [time, setTime] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setIsLike(postInfo?.isLiked);
-  }, [postInfo?.isLiked]);
-
-  async function handleLike() {
-    if (!isLike) {
-      try {
-        await addLike(postInfo.id);
-      } catch (error) {
-        console.error(error);
-      }
-      postInfo.likeCount++;
-    } else {
-      try {
-        await addUnlike(postInfo.id);
-      } catch (error) {
-        console.error(error);
-      }
-      postInfo.likeCount--;
-    }
-    setIsLike(!isLike);
-  }
 
   const date1 = dayjs('2022-12-17T09:00:51.000Z');
   // const date1 = dayjs(postInfo?.createdAt);
@@ -69,7 +44,7 @@ const AdminPostItem = ({ postInfo }) => {
   }, [diffWithYear, diffWithDay, diffWithHour, diffWithMinute]);
 
   return (
-    <div className="flex py-4 pl-6 pr-[29px] border-b border-borderC">
+    <div className="flex py-4 pl-6 pr-[29px] border-b border-borderC relative">
       <Avatar imgUrl={postInfo?.User.avatar} />
       <div className="ml-2">
         <div className="flex space-x-2 items-center">
@@ -87,24 +62,15 @@ const AdminPostItem = ({ postInfo }) => {
           </div>
         </div>
         <p
-          className="content-l-r mb-2 cursor-pointer min-h-[78px]"
+          className="content-l-r mb-2 cursor-pointer min-h-[52px]"
           onClick={() => {
             navigate(`/post/${postInfo?.id}`);
           }}
         >
           {postInfo?.description}
         </p>
-        <div className="flex space-x-9 text-[14px] leading-[14px] font-semibold text-secondary">
-          <div className="flex space-x-2 items-center cursor-pointer">
-            <ReplyModal />
-            <div>{postInfo?.replyCount}</div>
-          </div>
-          <div className="flex space-x-2 items-center cursor-pointer" onClick={handleLike}>
-            {isLike ? <IconWraper imgUrl={likeFullIcon} /> : <IconWraper imgUrl={likeIcon} />}
-            <div>{postInfo?.likeCount}</div>
-          </div>
-        </div>
       </div>
+      <IconWraper imgUrl={deleteIcon} style="w-[15px] h-[15px] absolute top-[21.5px] right-[4.63px]" />
     </div>
   );
 };

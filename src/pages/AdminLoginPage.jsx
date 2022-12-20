@@ -67,7 +67,7 @@ const AdminLoginPage = () => {
 
       if (res.status == 'success') {
         showNotification('success', `歡迎回來，${res.data.user.name}`);
-        navigate('/admin/main');
+        navigate('/admin/tweets');
         return;
       } else if (res.message === '帳號不存在！') {
         showNotification('error', '帳號不存在！');
