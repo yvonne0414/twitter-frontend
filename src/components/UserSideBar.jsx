@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
-import {PostModal, SideBarItem} from './index'
+import { useAuth } from '../contexts/AuthContext';
+import { notifyContext } from '../contexts/NotifyContext';
+import { PostModal, SideBarItem } from './index';
 
 const buttonDatas = [
   {
@@ -26,26 +28,27 @@ const buttonDatas = [
 const UserSideBar = () => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState('首頁');
+  const { logout } = useAuth();
+  const { showNotification } = useContext(notifyContext);
 
   function handleButtonClicked(title) {
     if (title === '登出') {
       logout();
       navigate('/login');
+      showNotification('success', `成功登出`);
       return;
-    } else if  (title === '首頁'){
+    } else if (title === '首頁') {
       navigate('/main');
-      setActiveItem('首頁')
-    } else if (title === '個人資料'){
-      navigate(`/profile`, {state:{userId: 14}});
-      setActiveItem('個人資料')
+      setActiveItem('首頁');
+    } else if (title === '個人資料') {
+      navigate(`/profile`, { state: { userId: 14 } });
+      setActiveItem('個人資料');
     } else {
-      navigate('/setting')
-      setActiveItem('設定')
+      navigate('/setting');
+      setActiveItem('設定');
     }
   }
-  function logout() {
-    alert('Logout success ~~~~~~~');
-  }
+
   function handlePostButtonClicked() {
     alert('Post New');
   }
@@ -66,7 +69,7 @@ const UserSideBar = () => {
       })}
       {/* <Button text={'推文'} onClick={handlePostButtonClicked} /> */}
       <PostModal />
-      
+
       <SideBarItem title="登出" iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
     </div>
   );

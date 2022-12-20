@@ -74,7 +74,7 @@ const AdminLoginPage = () => {
         cloneDatas[0].invalid = true;
         cloneDatas[0].errorMessage = '帳號不存在！';
       } else if (res.message === '密碼輸入錯誤！') {
-        showNotification('error', '密碼輸入錯誤！');
+        showNotification('error', '密碼輸入錯誤！')
         cloneDatas[1].invalid = true;
         cloneDatas[1].errorMessage = '密碼輸入錯誤！';
       } else {
