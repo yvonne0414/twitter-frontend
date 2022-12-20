@@ -14,7 +14,9 @@ function App() {
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/regist" element={<SignUpPage />} />
-              <Route path="/admin" element={<AdminLoginPage />} />
+              <Route path="/admin/login" element={<AdminLoginPage />} />
+              {/* todo add admin main page */}
+              <Route path="/admin/main" element={<UserLayout><PostListPage /></UserLayout>} /> 
               <Route path="/post/:postId" exact element={<UserLayout><PostDetailPage /></UserLayout>}/>
               <Route path="/profile" exact element={<UserLayout><ProfilePage /></UserLayout>}/>
               <Route path="/profile/follow" exact element={<UserLayout><ProfileFollowPage /></UserLayout>}/>

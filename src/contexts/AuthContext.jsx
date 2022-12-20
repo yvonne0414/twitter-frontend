@@ -1,7 +1,7 @@
-import { login, register, checkPermission } from '../apis/auth';
+import { login, register, checkPermission, adminLogin } from '../apis/auth';
 import { createContext, useState, useEffect } from 'react';
 // import * as jwt from 'jsonwebtoken';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 
 const defaultAuthContext = {
@@ -10,38 +10,48 @@ const defaultAuthContext = {
   register: null,
   login: null,
   logout: null,
+  adminLogin: null,
 };
 
 const AuthContext = createContext(defaultAuthContext);
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null)
-  
+  const [user, setUser] = useState(null);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const checkTokenIsValid = async () => {
-      const authToken = localStorage.getItem('authToken');
-      if (!authToken) {
-        setIsAuthenticated(false);
-        return;
-      }
-      const result = await checkPermission(authToken);
-      if (result) {
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
-    };
+    const authToken = localStorage.getItem('authToken');
+    const role = localStorage.getItem('role');
 
-    checkTokenIsValid();
+    console.log(`isAuthenticated(${authToken !== null}, role(${role})))`);
+
+    if (authToken === null) {
+      if (pathname !== '/login' && pathname !== '/regist' && pathname !== '/admin/login') {
+        navigate('/login');
+      }
+      return;
+    }
+
+    if (role === 'admin') {
+      if (pathname === '/login' || pathname === '/regist' || pathname === '/admin/login') {
+        navigate('/admin/main');
+      } else if (!pathname.includes('admin')) {
+        navigate('admin/main');
+      }
+      return;
+    } else {
+      if (pathname === '/login' || pathname === '/regist' || pathname.includes('admin')) {
+        navigate('/main');
+      }
+      return;
+    }
   }, [pathname]);
 
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticated,
+        isAuthenticated: localStorage.getItem('authToken') != null,
         currentMember: user,
         register: async (data) => {
           const result = await register({
@@ -49,16 +59,21 @@ export const AuthProvider = ({ children }) => {
             username: data.username,
             email: data.email,
             password: data.password,
-            checkPassword: data.checkPassword
+            checkPassword: data.checkPassword,
           });
           if (result.status === 'success') {
-            setIsAuthenticated(true);
+            localStorage.setItem('role', result.data.role);
             setUser({
               id: result.data.id,
               account: result.data.account,
-              name: result.data.email,
+              name: result.data.name,
+              email: result.data.email,
               updatedAt: result.data.updatedAt,
-              createdAt: result.data.createdAt
+              createdAt: result.data.createdAt,
+              avatar: null,
+              cover: null,
+              introduction: null,
+              role: result.data.role,
             });
           }
           return result;
@@ -68,18 +83,31 @@ export const AuthProvider = ({ children }) => {
             account: data.account,
             password: data.password,
           });
-          console.log(res)
+          console.log(res);
 
           if (res.status == 'success') {
-            setIsAuthenticated(true);
-            setUser(res.data.user)
+            setUser(res.data.user);
+            localStorage.setItem('role', res.data.user.role);
             localStorage.setItem('authToken', res.data.token);
-          } 
+          }
+          return res;
+        },
+        adminLogin: async (data) => {
+          const res = await adminLogin({
+            account: data.account,
+            password: data.password,
+          });
+
+          if (res.status == 'success') {
+            setUser(res.data.user);
+            localStorage.setItem('role', res.data.user.role);
+            localStorage.setItem('authToken', res.data.token);
+          }
           return res;
         },
         logout: () => {
           localStorage.removeItem('authToken');
-          setIsAuthenticated(false);
+          localStorage.removeItem('role');
         },
       }}
     >

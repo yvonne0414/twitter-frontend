@@ -74,14 +74,12 @@ const LoginPage = () => {
       showNotification('error', '帳號不存在！');
       cloneDatas[0].invalid = true;
       cloneDatas[0].errorMessage = '帳號不存在！';
-    } else if (res.message === '帳號或密碼輸入錯誤！') {
-      showNotification('error', '帳號或密碼輸入錯誤！');
-      cloneDatas[0].invalid = true
-      cloneDatas[0].errorMessage = '帳號或密碼輸入錯誤！';
+    } else if (res.message === '密碼輸入錯誤！') {
+      showNotification('error', '密碼輸入錯誤！');
       cloneDatas[1].invalid = true;
-      cloneDatas[1].errorMessage = '帳號或密碼輸入錯誤！';
+      cloneDatas[1].errorMessage = '密碼輸入錯誤！';
     } else {
-      alert("Unkown Error")
+      alert('Unkown Error');
     }
   }
 
@@ -106,7 +104,7 @@ const LoginPage = () => {
           註冊
         </Link>
         <p className={`mx-3`}>・</p>
-        <Link to="/admin" className={`content-l-r text-primary underline underline-offset-2	`}>
+        <Link to="/admin/login" className={`content-l-r text-primary underline underline-offset-2	`}>
           後台登入
         </Link>
       </div>
