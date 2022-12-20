@@ -78,7 +78,7 @@ const PostItem = ({postInfo}) => {
           <h6 className='content-l-b'>{postInfo?.User.name}</h6>
           <div className='content-m-r text-secondary'><span className='cursor-pointer' onClick={()=>{navigate(`/profile`, {state:{userId: postInfo?.User.id}})}}>@{postInfo?.User.account}</span>・{time}</div>
         </div>
-        <p className='content-l-r mb-2 cursor-pointer'  onClick={()=>{navigate(`/post/${postInfo?.id}`)}}>
+        <p className='content-l-r mb-2 cursor-pointer min-h-[78px]'  onClick={()=>{navigate(`/post/${postInfo?.id}`)}}>
           {postInfo?.description} 
         </p>
         <div className="flex space-x-9 text-[14px] leading-[14px] font-semibold text-secondary">
