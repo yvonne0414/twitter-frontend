@@ -20,9 +20,9 @@ export const deletePost = async (id) => {
   }
 };
 
-export const getAdminUsersList = async () => {
+export const getAdminUsersList = async ({ page, limit }) => {
   try {
-    const res = await axiosInstance.get(`${baseUrl}/admin/users`);
+    const res = await axiosInstance.get(`${baseUrl}/admin/users?page=${page}&limit=${limit}`);
     return res.data;
   } catch (error) {
     console.error('[Get AdminPostList failed]: ', error);

@@ -15,7 +15,7 @@ const AdminPostListPage = () => {
     async function getAdminPosts() {
       setIsLoading(true);
       const result = await getAdminPostlist({
-        page: nextPage,
+        page: 1,
         limit: limit,
       });
       console.log(result);
@@ -25,7 +25,7 @@ const AdminPostListPage = () => {
         return;
       }
       setPostList(result);
-      setNextPage(nextPage + 1);
+      setNextPage(2);
     }
     getAdminPosts();
   }, []);
