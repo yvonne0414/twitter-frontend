@@ -73,7 +73,7 @@ const AdminPostItem = ({ postInfo, onDelete }) => {
             navigate(`/post/${postInfo?.id}`);
           }}
         >
-          {postInfo?.description}
+          {postInfo?.description.substring(0, 50)}
         </p>
       </div>
       <IconWraper imgUrl={deleteIcon} style="w-[15px] h-[15px] absolute top-[21.5px] right-[4.63px]" onClick={handleDeleteButtonClicked}/>

@@ -28,6 +28,9 @@ import ProfileMain from './ProfileMain';
 import EditProfileModal from './EditProfileModal';
 import AdminPostItem from './AdminPostItem';
 import AdminPostCollection from './AdminPostCollection';
+import AdminUserItem from './AdminUserItem';
+import AdminUserCollection from './AdminUserCollection';
+
 export {
   AuthInputs,
   Avatar,
@@ -59,4 +62,6 @@ export {
   EditProfileModal,
   AdminPostItem,
   AdminPostCollection,
+  AdminUserItem,
+  AdminUserCollection,
 };
