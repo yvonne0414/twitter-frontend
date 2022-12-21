@@ -8,5 +8,6 @@ import ProfileFollowPage from './ProfileFollowPage';
 import AccountUpdatePage from './AccountUpdatePage';
 import ErrorPage from './ErrorPage';
 import AdminPostListPage from './AdminPostListPage';
+import AdminUserListPage from './AdminUserListPage';
 
-export { PostListPage, AdminLoginPage, LoginPage, SignUpPage, PostDetailPage, ProfilePage, ProfileFollowPage, AccountUpdatePage, ErrorPage, AdminPostListPage, };
+export { PostListPage, AdminLoginPage, LoginPage, SignUpPage, PostDetailPage, ProfilePage, ProfileFollowPage, AccountUpdatePage, ErrorPage, AdminPostListPage, AdminUserListPage};
