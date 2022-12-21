@@ -1,8 +1,7 @@
-import { Navbar, PostNew, PostCollection, Loading, AdminPostCollection, NotificationCollection, AdminUserCollection } from '../components';
+import { Navbar, Loading, AdminUserCollection } from '../components';
 import { useContext, useEffect, useState } from 'react';
 import { deletePost, getAdminPostlist, getAdminUsersList } from '../apis/admin';
 import { notifyContext } from '../contexts/NotifyContext';
-import { render } from '@testing-library/react';
 import AdminLayout from '../components/AdminLayout';
 
 const AdminUserListPage = () => {
@@ -54,7 +53,6 @@ const AdminUserListPage = () => {
     <AdminLayout onScrollToBottom={handleScrollToButton}>
       <Navbar title={'使用者列表'} />
       {isLoading ? <Loading /> : <AdminUserCollection userList={userList} />}
-      <NotificationCollection />
     </AdminLayout>
   );
 };

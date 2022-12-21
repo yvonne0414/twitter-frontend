@@ -1,4 +1,4 @@
-import { Navbar, PostNew, PostCollection, Loading, AdminPostCollection, NotificationCollection } from '../components';
+import { Navbar, PostNew, PostCollection, Loading, AdminPostCollection } from '../components';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { deletePost, getAdminPostlist } from '../apis/admin';
 import { notifyContext } from '../contexts/NotifyContext';
@@ -69,7 +69,6 @@ const AdminPostListPage = () => {
     <AdminLayout onScrollToBottom={handleScrollToButton}>
       <Navbar title={'推文清單'} />
       {isLoading ? <Loading /> : <AdminPostCollection postList={postList} onDeleteItem={handleDeleteItem} />}
-      <NotificationCollection />
     </AdminLayout>
   );
 };

@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { notifyContext } from '../contexts/NotifyContext';
-import { NotificationCollection } from '../components';
 
 const requiredDatas = [
   {
@@ -108,7 +107,6 @@ const LoginPage = () => {
           後台登入
         </Link>
       </div>
-      <NotificationCollection />
     </div>
   );
 };

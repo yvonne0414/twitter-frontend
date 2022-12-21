@@ -4,7 +4,6 @@ import Button from '../components/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { NotificationCollection } from '../components';
 import { notifyContext } from '../contexts/NotifyContext';
 
 const requiredDatas = [
@@ -163,7 +162,6 @@ const SignUpPage = () => {
           取消
         </Link>
       </div>
-      <NotificationCollection />
     </div>
   );
 };
