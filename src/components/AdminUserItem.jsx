@@ -2,7 +2,7 @@ import Avatar from './Avatar';
 import { Link } from 'react-router-dom';
 import EditProfileModal from './EditProfileModal';
 import likeIcon from '../assets/imgs/icon/like.png';
-import postIcon from '../assets/imgs/icon/post_b.png';
+import postIcon from '../assets/imgs/icon/post_grey.png';
 
 const IconWithNumber = ({ src, number }) => {
   return (
@@ -30,8 +30,8 @@ const AdminUserItem = ({ userInfo, style }) => {
       <div className={`mt-8 w-full text-center content-l-b text-ellipsis overflow-hidden pl-4 pr-4`}>{userInfo.name}</div>
       <div className={`w-full text-center content-m-r text-ellipsis overflow-hidden pl-4 pr-4 text-secondary`}>{`@${userInfo.account}`}</div>
       <div className={`w-full flex justify-center mt-[19.2px]`}>
-        <IconWithNumber src={postIcon} number={userInfo.postCount || 0} />
-        <IconWithNumber src={likeIcon} number={userInfo.likeCount || 0} />
+        <IconWithNumber src={postIcon} number={userInfo.tweetsCount || 0} />
+        <IconWithNumber src={likeIcon} number={userInfo.tweetsLikedCount || 0} />
       </div>
       <div className={`w-full flex justify-center mt-3`}>
         <TextWithNumber text={'跟隨中'} number={userInfo.followingCount || 0} />
