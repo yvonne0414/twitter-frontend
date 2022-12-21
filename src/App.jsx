@@ -1,9 +1,10 @@
 import './global.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PostListPage, LoginPage, SignUpPage, AdminLoginPage, PostDetailPage, ProfilePage, ProfileFollowPage, AccountUpdatePage, ErrorPage } from './pages';
+import { PostListPage, LoginPage, SignUpPage, AdminLoginPage, PostDetailPage, ProfilePage, ProfileFollowPage, AccountUpdatePage, ErrorPage, AdminPostListPage } from './pages';
 import { UserLayout } from './components';
 import { NotifyContextProvider } from './contexts/NotifyContext';
 import { AuthProvider } from './contexts/AuthContext';
+import AdminLayout from './components/AdminLayout';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
               <Route path="/regist" element={<SignUpPage />} />
               <Route path="/admin/login" element={<AdminLoginPage />} />
               {/* todo add admin main page */}
-              <Route path="/admin/main" element={<UserLayout><PostListPage /></UserLayout>} /> 
+              <Route path="/admin/tweets" element={<AdminLayout><AdminPostListPage /></AdminLayout>} /> 
               <Route path="/post/:postId" exact element={<UserLayout><PostDetailPage /></UserLayout>}/>
               <Route path="/profile" exact element={<UserLayout><ProfilePage /></UserLayout>}/>
               <Route path="/profile/follow" exact element={<UserLayout><ProfileFollowPage /></UserLayout>}/>

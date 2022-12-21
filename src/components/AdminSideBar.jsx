@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ACLogo from '../assets/imgs/logo.png';
+import { useAuth } from '../contexts/AuthContext';
+import { notifyContext } from '../contexts/NotifyContext';
 import SideBarItem from './SideBarItem';
 
 
@@ -25,12 +27,17 @@ const AdminSideBar = () => {
   const navigate = useNavigate();
   const {pathname, state} = useLocation();
   const [activeItem, setActiveItem] = useState(0);
+  const { logout } = useAuth();
+  const { showNotification } = useContext(notifyContext);
+
+
 
   function handleButtonClicked(path) {
     // 登出
     if(path === '/logout'){
       logout();
-      navigate('/login');
+      navigate('/admin/login');
+      showNotification('success', `成功登出`);
       return
     }
     // TODO state.userId 要等於現在用戶，目前先帶死
@@ -39,12 +46,6 @@ const AdminSideBar = () => {
         navigate(btn.path)
       }
     })
-  }
-  function logout() {
-    alert('Logout success ~~~~~~~');
-  }
-  function handlePostButtonClicked() {
-    alert('Post New');
   }
 
   useEffect(()=>{
@@ -57,7 +58,7 @@ const AdminSideBar = () => {
   }, [pathname, state])
   return (
     <div className={`w-[178px] h-full flex flex-col`}>
-      <img src={ACLogo} className={`w-[50px] h-[50px] mt-16`} alt="AC Logo" />
+      <img src={ACLogo} className={`w-[50px] h-[50px]`} alt="AC Logo" />
       {buttonDatas.map((buttonData) => {
         return (
           <SideBarItem

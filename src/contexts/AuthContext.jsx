@@ -35,9 +35,9 @@ export const AuthProvider = ({ children }) => {
 
     if (role === 'admin') {
       if (pathname === '/login' || pathname === '/regist' || pathname === '/admin/login') {
-        navigate('/admin/main');
+        navigate('/admin/tweets');
       } else if (!pathname.includes('admin')) {
-        navigate('admin/main');
+        navigate('admin/tweets ');
       }
       return;
     } else {
