@@ -1,8 +1,8 @@
 import { baseUrl, axiosInstance } from './config';
 
-export const getAdminPostlist = async () => {
+export const getAdminPostlist = async ({ page, limit }) => {
   try {
-    const res = await axiosInstance.get(`${baseUrl}/admin/tweets`);
+    const res = await axiosInstance.get(`${baseUrl}/admin/tweets?page=${page}&limit=${limit}`);
     return res.data;
   } catch (error) {
     console.error('[Get AdminPostList failed]: ', error);

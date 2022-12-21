@@ -28,19 +28,11 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/regist" element={<SignUpPage />} />
               <Route path="/admin/login" element={<AdminLoginPage />} />
-              <Route
-                path="/admin/tweets"
-                element={
-                  <AdminLayout>
-                    <AdminPostListPage />{' '}
-                  </AdminLayout>
-                }
-              />
+              <Route path="/admin/tweets" element={<AdminPostListPage />} />
               <Route
                 path="/admin/users"
                 element={
                   <AdminLayout>
-                    {' '}
                     <AdminUserListPage />
                   </AdminLayout>
                 }
