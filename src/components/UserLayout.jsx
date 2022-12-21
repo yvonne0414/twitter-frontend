@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { getUserTop10 } from '../apis/user';
 
 const UserLayout = ({children}) => {
-    const [userTop10, setUserTop10] = useState([])
+    const [userTop10, setUserTop10] = useState([]);
+    const loginUserId = JSON.parse(localStorage.getItem("userInfo")).id;
   
     useEffect(()=>{
       async function getPopularInfoList(){
@@ -17,7 +18,7 @@ const UserLayout = ({children}) => {
     return (
         <div className='flex justify-between'>
             <aside className='h-screen pt-4'>
-                <UserSideBar />
+                <UserSideBar loginUserId={loginUserId} />
             </aside>
             <main  className='h-screen overflow-auto border-x border-borderC mx-6 grow'>
                 {children}
