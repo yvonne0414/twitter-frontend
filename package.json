@@ -1,6 +1,6 @@
 {
   "name": "twitter-frontend",
-  "homepage": "https://yvonne0414.github.io/simple-twitter/main",
+  "homepage": "https://yvonne0414.github.io/twitter-frontend/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,7 +20,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b feature/deploy -d build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
