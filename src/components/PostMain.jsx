@@ -8,7 +8,11 @@ import { addLike, addUnlike } from '../apis/tweet';
 import { useEffect, useState } from 'react';
 
 import dayjs from 'dayjs';
-dayjs.locale('zh-cn')
+import duration from 'dayjs/plugin/duration';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(duration);
+dayjs.extend(relativeTime);
+dayjs.locale('zh-cn');
 
 const IconWraper = ({imgUrl, style="w-[25px] h-[25px]"}) => {
   return (
@@ -19,9 +23,28 @@ const IconWraper = ({imgUrl, style="w-[25px] h-[25px]"}) => {
 };
 
 const PostMain = ({postInfo}) => {
-    // console.log(postInfo);
     const [isLike, setIsLike] = useState(false);
-    const [postTime, setPostTime] = useState('')
+    const [postTime, setPostTime] = useState('');
+    const [time, setTime] = useState('');
+
+    const date1 = dayjs(postInfo?.createdAt);
+    const now = dayjs();
+    const diffWithYear = now.diff(date1, 'year');
+    const diffWithDay = now.diff(date1, 'day');
+    const diffWithHour = now.diff(date1, 'hour');
+    const diffWithMinute = now.diff(date1, 'minute');
+
+    useEffect(()=>{
+      if(diffWithYear){
+        setTime(`${diffWithYear}年`)
+      } else if(diffWithDay){
+        setTime(`${diffWithDay}天`)
+      } else if(diffWithHour){
+        setTime(`${diffWithHour}小時`)
+      } else if(diffWithMinute){
+        setTime(`${diffWithMinute}分鐘`)
+      }
+    },[diffWithYear, diffWithDay, diffWithHour, diffWithMinute])
     
     useEffect(()=>{
       setIsLike(postInfo?.isLiked);
@@ -73,7 +96,7 @@ const PostMain = ({postInfo}) => {
           </div>
           <div className="flex space-x-24 mt-5">
             <div className='flex space-x-2 items-center cursor-pointer'>
-              <ReplyModal iconStyle='w-[25px] h-[25px]' />
+              <ReplyModal postInfo={postInfo} iconStyle='w-[25px] h-[25px]' time={time} />
             </div>
             <div className='flex space-x-2 items-center cursor-pointer' onClick={handleLike}>
               {

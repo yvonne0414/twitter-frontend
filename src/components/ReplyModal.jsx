@@ -1,10 +1,16 @@
 import closeIcon from '../assets/imgs/icon/close_o.png';
 import replyIcon from '../assets/imgs/icon/reply.png';
 import { Avatar, Button } from './index'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { notifyContext } from '../contexts/NotifyContext';
+import { addReplies } from '../apis/tweet';
 
-const ReplyModal = ({iconStyle="w-[14px] h-[14px]"}) => {
-  const [isShow, setIsShow] = useState(false)
+const ReplyModal = ({postInfo, iconStyle="w-[14px] h-[14px]", time}) => {
+  const [isShow, setIsShow] = useState(false);
+  const [value, setValue] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const loginAvatar = JSON.parse(localStorage.getItem("userInfo")).avatar;
+
   function handleValueChange(e){
     let lineHeight = 15;
     let borderTop = 1;
@@ -19,10 +25,32 @@ const ReplyModal = ({iconStyle="w-[14px] h-[14px]"}) => {
         }
         e.target.style.height = `${height + lineHeight}px`
     }
+    setValue(e.target.value);
   }
 
   function toggleModal(){
     setIsShow(!isShow)
+  }
+
+  // 通知
+  const { showNotification } = useContext(notifyContext);
+  async function handleReply(){
+    if(!value.trim()){
+      setErrorMsg('內容不可空白');
+      return
+    }
+    if(value.length > 140){
+      setErrorMsg('字數不可超過 140 字');
+      return
+    }
+
+    await addReplies(postInfo.id, value).then((e)=>{
+      showNotification('success', '回覆成功');
+      toggleModal();
+    }).catch((errMsg)=>{
+      showNotification('wran', errMsg)
+    })
+    
   }
 
   return (
@@ -42,31 +70,34 @@ const ReplyModal = ({iconStyle="w-[14px] h-[14px]"}) => {
           <div className='px-6 py-4'>
             <div className='w-100 flex'>
               <div className='flex flex-col items-center'>
-                <Avatar />
+                <Avatar imgUrl={postInfo?.User.avatar} />
                 <div className='bg-dark-60 w-[2px] my-4 grow'></div>
               </div>
               <div className='px-2 pb-4'>
                 <div className='flex space-x-2 items-center'>
-                  <h6 className='content-l-b'>Name</h6>
-                  <div className='content-m-r text-secondary'>@apple・3小時</div>
+                  <h6 className='content-l-b'>{postInfo?.User.name}</h6>
+                  <div className='content-m-r text-secondary'>@{postInfo?.User.account}・{time}</div>
                   {/* <h6 className='content-l-b'>{postInfo?.User.name}</h6> */}
                   {/* <div className='content-m-r text-secondary'>{postInfo?.User.account}・{time}</div> */}
                 </div>
                 <p className='content-l-r my-2 text-dark-100'>
                   {/* {postInfo?.description} */}
-                  Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. 
+                  {postInfo?.description}
                 </p>
-                <div className='content-m-r text-secondary'>回覆給 <span className='text-brand'>@apple</span></div>
+                <div className='content-m-r text-secondary'>回覆給 <span className='text-brand'>@{postInfo?.User.account}</span></div>
               </div>
             </div>
             <div className='w-100 flex'>
-              <Avatar />
+              <Avatar imgUrl={loginAvatar} />
               <textarea className='grow  heading-h5 px-2 py-3 appearance-none resize-none overflow-hidden focus:outline-none' placeholder='推你的回覆' onChange={handleValueChange}></textarea>
             </div>
           </div>
           {/* footer */}
-          <div className='p-4 text-end'>
-            <Button text={"回覆"} textStyle={"content-m-r px-[15px] py-[10px]"} />
+          <div className='flex justify-end items-center space-x-5 mt-[22px] p-4'>
+            {
+              errorMsg && <div className='font-medium text-[15px] text-error'>{errorMsg}</div>
+            }
+            <Button text={"回覆"} textStyle={"content-m-r px-[15px] py-[10px]"} onClick={handleReply} />
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
-dayjs.locale('cn')
+dayjs.locale('cn');
 
 const IconWraper = ({imgUrl, style="w-[14px] h-[14px]"}) => {
   return (
@@ -48,7 +48,7 @@ const PostItem = ({postInfo}) => {
       setIsLike(!isLike)
     }
 
-  const date1 = dayjs('2022-12-17T09:00:51.000Z');
+  const date1 = dayjs(postInfo.createdAt);
   // const date1 = dayjs(postInfo?.createdAt);
   const now = dayjs();
   const diffWithYear = now.diff(date1, 'year');
@@ -83,7 +83,7 @@ const PostItem = ({postInfo}) => {
         </p>
         <div className="flex space-x-9 text-[14px] leading-[14px] font-semibold text-secondary">
           <div className='flex space-x-2 items-center cursor-pointer'>
-            <ReplyModal />
+            <ReplyModal postInfo={postInfo} time={time}/>
             <div>{postInfo?.replyCount}</div>
           </div>
           <div className='flex space-x-2 items-center cursor-pointer' onClick={handleLike}>

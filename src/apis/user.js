@@ -123,7 +123,7 @@ export const putUserAccount = async (userId, payload) => {
 export const putUserProfile = async (userId, payload) => {
   try {
     const res = await axiosInstance.put(`${baseUrl}/users/${userId}`, payload);
-    return res.data;
+    return res.data.data;
   } catch (error) {
     console.error('[PUT UserProfile failed]: ', error);
     throw error.response.data.message;

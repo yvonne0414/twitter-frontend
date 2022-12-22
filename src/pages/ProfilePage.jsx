@@ -48,6 +48,7 @@ const ProfilePage = () => {
           console.log('errorMsg', errorMsg);
           showNotification('warn', errorMsg);
         });
+      
 
       // 是否是登入者
       if (Number(loginUserId) === Number(userId)) {
@@ -133,21 +134,24 @@ const ProfilePage = () => {
         return
       }
 
-      console.log({coverImg, avatarImg });
+      // console.log({coverImg, avatarImg });
       await putUserProfile(loginUserId, formData).then((res)=>{
           showNotification('success', '修改成功');
-          if(avatarImg && (coverImg || coverImg === "")){
-            setNowUser({...nowUser, avatar: avatarImg, cover: coverImg})
-            return res
+          // console.log(res, res);
+          setNowUser({...nowUser, avatar: res.avatar, cover: res.cover})
+          let setUserLocal = {
+            id: 24,
+            account: "user3",
+            name:  res.name,
+            email: "user3@example.com",
+            avatar: res.avatar,
+            cover: res.cover,
+            introduction:  res.introduction,
+            role: "user",
+            createdAt: "2022-12-17T09:00:50.000Z",
+            updatedAt: "2022-12-17T09:00:50.000Z"
           }
-          if(avatarImg){
-            setNowUser({...nowUser, avatar: avatarImg})
-            return res
-          }
-          if(coverImg || coverImg === ""){
-            setNowUser({...nowUser, cover: coverImg})
-            return res
-          }
+          localStorage.setItem("userInfo", JSON.stringify(setUserLocal))
       }).catch((err)=>{
           showNotification('wran', err);
       })
