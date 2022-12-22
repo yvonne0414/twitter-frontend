@@ -1,6 +1,6 @@
 import { Navbar, Loading, AdminUserCollection } from '../components';
 import { useContext, useEffect, useState } from 'react';
-import { deletePost, getAdminPostlist, getAdminUsersList } from '../apis/admin';
+import { getAdminUsersList } from '../apis/admin';
 import { notifyContext } from '../contexts/NotifyContext';
 import AdminLayout from '../components/AdminLayout';
 
@@ -19,6 +19,7 @@ const AdminUserListPage = () => {
         limit: limit,
       });
       setIsLoading(false);
+      console.log(result)
       if (result.status === 'error') {
         showNotification('error', result.message);
         return
