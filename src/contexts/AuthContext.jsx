@@ -89,6 +89,7 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data.user);
             localStorage.setItem('role', res.data.user.role);
             localStorage.setItem('authToken', res.data.token);
+            localStorage.setItem('userInfo', JSON.stringify(res.data.user));
           }
           return res;
         },
@@ -108,6 +109,7 @@ export const AuthProvider = ({ children }) => {
         logout: () => {
           localStorage.removeItem('authToken');
           localStorage.removeItem('role');
+          localStorage.removeItem('userInfo');
         },
       }}
     >

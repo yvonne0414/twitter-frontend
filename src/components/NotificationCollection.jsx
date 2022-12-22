@@ -32,7 +32,7 @@ const NotificationCollection = () => {
   
   
   return (
-    <div className={`w-[410px] overflow-x-hidden fixed top-1 right-1 py-2 ${!notifyList.length && 'hidden'} flex-col space-y-3`}>
+    <div className={`w-[410px] overflow-x-hidden fixed top-1 right-1 py-2 ${!notifyList.length && 'hidden'} flex-col space-y-3 z-10`}>
       {
         notifyList.map((item)=>(
           <Fragment key={item.id}>

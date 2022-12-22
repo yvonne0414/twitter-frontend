@@ -103,3 +103,29 @@ export const getUserfollowers = async (userId) => {
     throw error.response.data.message;
   }
 };
+
+/**
+ * 修改使用者自己的帳號資料
+ */
+export const putUserAccount = async (userId, payload) => {
+  try {
+    const res = await axiosInstance.put(`${baseUrl}/users/${userId}/account`, payload);
+    return res.data;
+  } catch (error) {
+    console.error('[PUT UserAccount failed]: ', error);
+    throw error.response.data.message;
+  }
+};
+
+/**
+ * 修改使用者自己的個人資料
+ */
+export const putUserProfile = async (userId, payload) => {
+  try {
+    const res = await axiosInstance.put(`${baseUrl}/users/${userId}`, payload);
+    return res.data;
+  } catch (error) {
+    console.error('[PUT UserProfile failed]: ', error);
+    throw error.response.data.message;
+  }
+};

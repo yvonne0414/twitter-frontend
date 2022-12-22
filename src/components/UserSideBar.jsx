@@ -29,7 +29,7 @@ const buttonDatas = [
   },
 ];
 
-const UserSideBar = () => {
+const UserSideBar = ({loginUserId}) => {
   const navigate = useNavigate();
   const {pathname, state} = useLocation();
   const [activeItem, setActiveItem] = useState(0);
@@ -48,7 +48,7 @@ const UserSideBar = () => {
     buttonDatas.forEach((btn)=>{
 
       if(path === '/profile'){
-        navigate(`/profile`, {state:{userId: 14}});
+        navigate(`/profile`, {state:{userId: loginUserId}});
         return
       }
       if(path === btn.path){
@@ -65,14 +65,14 @@ const UserSideBar = () => {
     setActiveItem('')
     buttonDatas.forEach((btn)=>{
       if(pathname === '/profile'){
-        (state.userId === 14) && setActiveItem(1)
+        (Number(state.userId) === Number(loginUserId)) && setActiveItem(1);
         return
       }
       if(pathname === btn.path){
         setActiveItem(btn.id)
       }
     })
-  }, [pathname, state])
+  }, [pathname, state, loginUserId])
 
   return (
     <div className={`w-[178px] h-full flex flex-col`}>

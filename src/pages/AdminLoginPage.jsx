@@ -2,7 +2,6 @@ import AuthInputs from '../components/AuthInputs';
 import ACLogo from '../assets/imgs/logo.png';
 import Button from '../components/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { NotificationCollection } from '../components';
 import { useAuth } from '../contexts/AuthContext';
 import { useContext, useState } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
@@ -101,7 +100,6 @@ const AdminLoginPage = () => {
           前台登入
         </Link>
       </div>
-      <NotificationCollection />
     </div>
   );
 };
