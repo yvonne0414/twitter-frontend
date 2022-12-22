@@ -113,7 +113,7 @@ export const putUserAccount = async (userId, payload) => {
     return res.data;
   } catch (error) {
     console.error('[PUT UserAccount failed]: ', error);
-    throw error.response.data.message;
+    return error.response.data;
   }
 };
 

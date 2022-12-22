@@ -45,7 +45,6 @@ const AdminPostItem = ({ postInfo, onDelete }) => {
   }, [diffWithYear, diffWithDay, diffWithHour, diffWithMinute]);
 
   function handleDeleteButtonClicked() {
-    console.log("coffee")
     onDelete(postInfo.id)
   }
 
