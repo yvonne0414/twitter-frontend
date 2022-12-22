@@ -26,7 +26,10 @@ const PostModal = () => {
 
   return (
     <>
-      <Button onClick={toggleModal} text={"推文"}  /> 
+      <div className={`flex justify-center md:hidden mt-[6px]`}>
+        <Button onClick={toggleModal} iconName={'post_w'} textStyle={`h-10 w-10 px-[8px] py-[8px] text-center`} />
+      </div>
+      <Button onClick={toggleModal} text={'推文'} textStyle={`hidden md:block text-xl`}/>
       <div className={`fixed top-0 left-0 h-screen w-screen bg-dark-100 bg-opacity-60 ${!isShow && 'hidden'}`}>
         <div className="bg-dark-0 rounded-2xl absolute top-14 left-1/2 translate-x-[-50%] w-1/2 min-w-[600px]">
           {/* header */}
@@ -36,20 +39,23 @@ const PostModal = () => {
             </div>
           </div>
           {/* body */}
-          <div className='px-6 py-4'>
-            <div className='w-100 flex'>
+          <div className="px-6 py-4">
+            <div className="w-100 flex">
               <Avatar />
-              <textarea className='grow  heading-h5 px-2 py-3 appearance-none resize-none overflow-hidden focus:outline-none' placeholder='有什麼新鮮事？' onChange={handleValueChange}></textarea>
+              <textarea
+                className="grow  heading-h5 px-2 py-3 appearance-none resize-none overflow-hidden focus:outline-none"
+                placeholder="有什麼新鮮事？"
+                onChange={handleValueChange}
+              ></textarea>
             </div>
           </div>
           {/* footer */}
-          <div className='p-4 text-end'>
-            <Button text={"推文"} textStyle={"content-m-r px-[15px] py-[10px]"} />
+          <div className="p-4 text-end">
+            <Button text={'推文'} textStyle={'content-m-r px-[15px] py-[10px]'} />
           </div>
         </div>
       </div>
-      
     </>
-  )
+  );
 }
 export default PostModal;

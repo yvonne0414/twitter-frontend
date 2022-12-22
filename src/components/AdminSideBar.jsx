@@ -57,13 +57,13 @@ const AdminSideBar = () => {
     })
   }, [pathname, state])
   return (
-    <div className={`w-[178px] h-full flex flex-col`}>
-      <img src={ACLogo} className={`w-[50px] h-[50px]`} alt="AC Logo" />
+    <div className={`w-[56px] md:w-[178px] h-full flex flex-col`}>
+      <img src={ACLogo} className={`w-[50px] h-[50px] md:ml-[13px] self-center md:self-start`} alt="AC Logo" />
       {buttonDatas.map((buttonData) => {
         return (
           <SideBarItem
             title={buttonData.title}
-            path = {buttonData.path}
+            path={buttonData.path}
             iconName={buttonData.iconName}
             activeIconName={buttonData.activeIconName}
             active={activeItem === buttonData.id}
