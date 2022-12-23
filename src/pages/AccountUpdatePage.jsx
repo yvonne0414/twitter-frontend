@@ -156,8 +156,8 @@ const AccountUpdate = () => {
       <div className="p-6">
         <AuthInputs requiredDatas={datas} onChange={handleInputChange} />
       </div>
-      <div className="px-6 pt-4 text-end">
-        <Button text={'儲存'} onClick={handleSaveButtonClicked}></Button>
+      <div className="px-6 pt-2 text-end">
+        <Button text={'儲存'} textStyle={`ml-auto`} onClick={handleSaveButtonClicked}></Button>
       </div>
     </>
   );
