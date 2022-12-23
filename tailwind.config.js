@@ -2,6 +2,11 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    screens: {
+      sm: '576px',
+      md: '992px',
+      lg: '1200px',
+    },
     extend: {
       colors: {
         brand: '#FF6600',
