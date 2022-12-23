@@ -24,8 +24,8 @@ const AdminPostItem = ({ postInfo, onDelete }) => {
   const navigate = useNavigate();
 
 
-  const date1 = dayjs('2022-12-17T09:00:51.000Z');
-  // const date1 = dayjs(postInfo?.createdAt);
+  // const date1 = dayjs('2022-12-17T09:00:51.000Z');
+  const date1 = dayjs(postInfo?.createdAt);
   const now = dayjs();
   const diffWithYear = now.diff(date1, 'year');
   const diffWithDay = now.diff(date1, 'day');

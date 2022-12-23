@@ -62,7 +62,7 @@ const requiredDatas = [
 const SignUpPage = () => {
   const [datas, setDatas] = useState(requiredDatas);
   const { showNotification } = useContext(notifyContext);
-  const { register } = useAuth();
+  const { register, login } = useAuth();
   const navigate = useNavigate();
 
   function handleInputChange({ id, value }) {
@@ -124,8 +124,19 @@ const SignUpPage = () => {
     });
 
     if (result.status === 'success') {
-      showNotification('註冊成功！');
-      navigate('/main');
+      showNotification('success', '註冊成功！,正在幫您登入');
+      const loginResult = await login({
+        account: datas[0].value,
+        password: datas[3].value,
+      });
+
+      if (loginResult.status === 'success') {
+        showNotification('success', '登入成功！');
+        navigate('/main');
+      } else {
+        showNotification('error', '登入失敗！');
+      }
+
     } else if (result.message === 'email 已重複註冊！') {
       cloneDatas[2].invalid = true;
       cloneDatas[2].errorMessage = 'email 已重複註冊！';
