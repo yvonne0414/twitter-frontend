@@ -1,12 +1,11 @@
 import { AdminSideBar } from '../components';
-import { useEffect, useState } from 'react';
-import { getUserTop10 } from '../apis/user';
+import { useState } from 'react';
 
 const AdminLayout = ({ children, onScrollToBottom }) => {
   const [userTop10, setUserTop10] = useState([]);
 
   function handleScroll(e) {
-    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    const bottom = e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight < 1;
     if (bottom) {
       onScrollToBottom()
     }
