@@ -14,7 +14,7 @@ const AccountUpdate = () => {
       invalid: false,
       errorMessage: '帳號不存在跟重複 等後台傳',
       textLimit: '',
-      value: userInfo.account,
+      value: userInfo?.account ?? "",
     },
     {
       title: '名稱',
@@ -24,7 +24,7 @@ const AccountUpdate = () => {
       invalid: false,
       errorMessage: '內容不可空白',
       textLimit: 50,
-      value: userInfo.name,
+      value: userInfo?.name ?? "",
     },
     {
       title: 'Email',
@@ -34,7 +34,7 @@ const AccountUpdate = () => {
       invalid: false,
       errorMessage: '內容不可空白',
       textLimit: '',
-      value: userInfo.email,
+      value: userInfo?.email ?? "",
     },
     {
       title: '密碼',
@@ -59,7 +59,7 @@ const AccountUpdate = () => {
   ]);
 
   const { showNotification } = useContext(notifyContext);
-  const userId = userInfo.id;
+  const userId = userInfo?.id ?? -1;
 
   function handleInputChange({ id, value }) {
     const cloneDatas = [...datas];
