@@ -107,7 +107,7 @@ export const getUserfollowers = async (userId) => {
 /**
  * 修改使用者自己的帳號資料
  */
-export const putUserAccount = async (userId, payload) => {
+export const putUserAccount = async ( {userId, payload} ) => {
   try {
     const res = await axiosInstance.put(`${baseUrl}/users/${userId}/account`, payload);
     return res.data;

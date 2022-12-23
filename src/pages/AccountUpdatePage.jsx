@@ -109,7 +109,7 @@ const AccountUpdate = () => {
     }
 
     const result = await putUserAccount({
-      id: userId,
+      userId: userId,
       payload: {
         account: datas[0].value,
         name: datas[1].value,
@@ -119,8 +119,10 @@ const AccountUpdate = () => {
       },
     });
 
+    console.log(result)
+
     if (result.status === 'success') {
-      showNotification('修改成功！');
+      showNotification('success', '修改成功！');
     } else if (result.message === 'email 已重複註冊！') {
       cloneDatas[2].invalid = true;
       cloneDatas[2].errorMessage = 'email 已重複註冊！';
