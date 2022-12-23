@@ -57,7 +57,7 @@ const AccountUpdate = () => {
       value: '',
     },
   ]);
-  
+
   const { showNotification } = useContext(notifyContext);
   const userId = userInfo.id;
 
@@ -119,7 +119,7 @@ const AccountUpdate = () => {
       },
     });
 
-    console.log(result)
+    console.log(result);
 
     if (result.status === 'success') {
       userInfo.account = datas[0].value;
@@ -127,35 +127,27 @@ const AccountUpdate = () => {
       userInfo.email = datas[2].value;
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       showNotification('success', '修改成功！');
-    } else if (result.message === 'email 已重複註冊！') {
+    } else if (result.message === 'email與其他使用者重複！') {
       cloneDatas[2].invalid = true;
-      cloneDatas[2].errorMessage = 'email 已重複註冊！';
+      cloneDatas[2].errorMessage = 'Email與其他使用者重複！';
       setDatas(cloneDatas);
-      showNotification('error', 'email 已重複註冊！');
-      return;
-    } else if (result.message === 'account 已重複註冊！') {
+      showNotification('error', 'Email與其他使用者重複！');
+    } else if (result.message === 'account與其他使用者重複！') {
       cloneDatas[0].invalid = true;
       cloneDatas[0].errorMessage = '帳號已重複註冊！';
-      setDatas(cloneDatas);
       showNotification('error', '帳號已重複註冊！');
-      return;
     } else if (result.message === '帳號不存在！') {
       showNotification('error', '帳號不存在！');
-      setDatas(cloneDatas);
-      return;
     } else if (result.message === '無權限更改此使用者！') {
       showNotification('error', '無權限更改此使用者！');
-      setDatas(cloneDatas);
-      return;
     } else if (result.message === '找不到使用者！') {
       showNotification('error', '找不到使用者！');
-      setDatas(cloneDatas);
-      return;
     } else if (result.message !== '') {
-      alert(result.message);
+      showNotification('error', result.message);
     } else {
-      alert('未知的錯誤');
+      showNotification('error', '未知的錯誤');
     }
+    setDatas(cloneDatas);
   }
 
   return (
