@@ -4,7 +4,7 @@ import { getUserTop10 } from '../apis/user';
 
 const UserLayout = ({children}) => {
     const [userTop10, setUserTop10] = useState([]);
-    const loginUserId = JSON.parse(localStorage.getItem("userInfo")).id;
+    const loginUserId = JSON.parse(localStorage.getItem("userInfo"))?.id ?? -1;
   
     useEffect(()=>{
       async function getPopularInfoList(){
