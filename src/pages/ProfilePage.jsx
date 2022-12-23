@@ -12,7 +12,7 @@ const tabList = [
     isActive: true,
   },
   {
-    title: '回復',
+    title: '回覆',
     tabid: 'profile-tab2',
     isActive: false,
   },
@@ -48,7 +48,6 @@ const ProfilePage = () => {
           console.log('errorMsg', errorMsg);
           showNotification('warn', errorMsg);
         });
-      
 
       // 是否是登入者
       if (Number(loginUserId) === Number(userId)) {
@@ -61,7 +60,7 @@ const ProfilePage = () => {
       const tweets = await getUserTweets(userId);
       setTweetList(tweets);
 
-      // 取得用戶回復推文
+      // 取得用戶回覆推文
       const replys = await getUserReplys(userId);
       let newReply = replys.map((replyInfo) => {
         let nReply = {};

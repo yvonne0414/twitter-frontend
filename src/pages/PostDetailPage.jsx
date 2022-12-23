@@ -12,15 +12,15 @@ const PostDetailPage = () => {
 
   useEffect(()=>{
     // 推文內容
-    async function getPostInfo(){
+    async function getPostInfo() {
       const post = await getPost(postId);
       setPostInfo(post);
       // console.log('post', post);
     }
     getPostInfo();
 
-    // 回復列表
-    async function getRepltList(){
+    // 回覆列表
+    async function getRepltList() {
       const replyList = await getReplies(postId);
       setReplies(replyList);
       // console.log('replyList', replyList);
