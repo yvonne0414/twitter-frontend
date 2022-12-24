@@ -23,6 +23,16 @@ const Input = ({ requiredData, onChange, isTextArea = false }) => {
     onChange(e.target.value);
   }
 
+  function isTextLimitVisible() {
+    // return true;
+    if (!requiredData.textLimit) {
+      return false;
+    }
+    if (!requiredData.value) {
+      return false
+    }
+  }
+
   return (
     <div className={`w-full`}>
       <div className="content-m-r w-full h-[22px] mt-0.5 mr-3 px-2 leading-tight text-dark-80 bg-dark-25  ">{requiredData.title}</div>
@@ -50,8 +60,8 @@ const Input = ({ requiredData, onChange, isTextArea = false }) => {
       )}
       <div className="flex h-[32px]">
         <span className={`${!requiredData.invalid && 'hidden'} text-error content-s-b w-[256px]`}> {requiredData.errorMessage}</span>
-        <span className={`text-dark-80 content-s-b w-full text-right ${requiredData.textLimit && requiredData.value.length > 0 ? 'visible' : 'invisible'}`}>
-          {requiredData.value.length}/{requiredData.textLimit}
+        <span className={`text-dark-80 content-s-b w-full text-right ${isTextLimitVisible() ? 'visible' : 'invisible'}`}>
+          {requiredData.value?.length ?? 0}/{requiredData.textLimit}
         </span>
       </div>
     </div>

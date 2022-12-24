@@ -9,7 +9,7 @@ const ReplyModal = ({postInfo, iconStyle="w-[14px] h-[14px]", time}) => {
   const [isShow, setIsShow] = useState(false);
   const [value, setValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const loginAvatar = JSON.parse(localStorage.getItem("userInfo")).avatar;
+  const loginAvatar = JSON.parse(localStorage.getItem("userInfo"))?.avatar;
 
   function handleValueChange(e){
     let lineHeight = 15;
