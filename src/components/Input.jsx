@@ -24,13 +24,13 @@ const Input = ({ requiredData, onChange, isTextArea = false }) => {
   }
 
   function isTextLimitVisible() {
-    // return true;
     if (!requiredData.textLimit) {
       return false;
     }
     if (!requiredData.value) {
-      return false
+      return false;
     }
+    return true;
   }
 
   return (

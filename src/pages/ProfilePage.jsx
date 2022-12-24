@@ -153,7 +153,7 @@ const ProfilePage = () => {
           // }
           localStorage.setItem('userInfo', JSON.stringify(newUserData));
       }).catch((err)=>{
-          showNotification('wran', err);
+          showNotification('warn', err);
       })
   }
 
