@@ -10,16 +10,18 @@ const PostListPage = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    async function getPosts() {
-      const posts = await getPostlist({
-        page: 1,
-        limit: limit,
-      });
-      setPostList(posts);
-      setIsLoading(false);
-    }
     getPosts();
   }, []);
+
+  async function getPosts() {
+    const posts = await getPostlist({
+      page: 1,
+      limit: limit,
+    });
+    setPostList(posts);
+    setNextPage(2);
+    setIsLoading(false);
+  }
 
   async function getMorePosts() {
     console.log(`nextPage=${nextPage}`);
@@ -40,10 +42,13 @@ const PostListPage = () => {
     getMorePosts();
   }
 
+  async function handlePostNew() {
+    getPosts();
+  }
   return (
     <UserLayout onScrollToBottom={handleScrollToButton}>
       <Navbar title={'首頁'} />
-      <PostNew />
+      <PostNew onPostNew={handlePostNew}/>
       {isLoading ? <Loading /> : <PostCollection postList={postList} />}
     </UserLayout>
   );
