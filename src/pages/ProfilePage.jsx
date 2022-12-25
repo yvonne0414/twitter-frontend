@@ -64,7 +64,7 @@ const ProfilePage = () => {
       const replys = await getUserReplys(userId);
       let newReply = replys.map((replyInfo) => {
         let nReply = {};
-        nReply['id'] = replyInfo.Tweet.id;
+        nReply['id'] = replyInfo.id;
         nReply['comment'] = replyInfo.comment;
         nReply['UserId'] = replyInfo.Tweet.UserId;
         nReply['createdAt'] = replyInfo.Tweet.createdAt;
