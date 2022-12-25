@@ -40,6 +40,10 @@ const PostDetailPage = () => {
       },
     };
     setReplies([...replies, newReply]);
+    setPostInfo({
+      ...postInfo,
+      replyCount: postInfo.replyCount + 1,
+    });
   }
   
   return (
