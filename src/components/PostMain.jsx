@@ -22,7 +22,7 @@ const IconWraper = ({imgUrl, style="w-[25px] h-[25px]"}) => {
   )
 };
 
-const PostMain = ({postInfo}) => {
+const PostMain = ({postInfo, onReplyAdded}) => {
     const [isLike, setIsLike] = useState(false);
     const [postTime, setPostTime] = useState('');
     const [time, setTime] = useState('');
@@ -96,7 +96,7 @@ const PostMain = ({postInfo}) => {
           </div>
           <div className="flex space-x-24 mt-5">
             <div className='flex space-x-2 items-center cursor-pointer'>
-              <ReplyModal postInfo={postInfo} iconStyle='w-[25px] h-[25px]' time={time} />
+              <ReplyModal postInfo={postInfo} iconStyle='w-[25px] h-[25px]' time={time} onReplyAdded={onReplyAdded} />
             </div>
             <div className='flex space-x-2 items-center cursor-pointer' onClick={handleLike}>
               {

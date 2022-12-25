@@ -27,11 +27,25 @@ const PostDetailPage = () => {
     }
     getRepltList();
   },[postId])
+
+  function handleReplyAdded(res) {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    const newReply = {
+      ...res,
+      User: {
+        id: userInfo?.id,
+        account: userInfo?.account,
+        name: userInfo?.name,
+        avatar: userInfo?.avatar,
+      },
+    };
+    setReplies([...replies, newReply]);
+  }
   
   return (
     <>
       <Navbar title={"推文"} haveBack={true} />
-      <PostMain postInfo={postInfo} />
+      <PostMain postInfo={postInfo} onReplyAdded={handleReplyAdded} />
       <ReplyCollection replyList={replies} />
     </>
   );
