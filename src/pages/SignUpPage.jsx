@@ -152,7 +152,7 @@ const SignUpPage = () => {
       showNotification('error', '帳號已重複註冊！');
       return;
     } else if (result.message !== '') {
-      alert(result.message);
+      showNotification('error', result.message);
     } else {
       alert('未知的錯誤');
     }
