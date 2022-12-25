@@ -65,6 +65,8 @@ const PostItem = ({postInfo}) => {
       setTime(`${diffWithHour}小時`)
     } else if(diffWithMinute){
       setTime(`${diffWithMinute}分鐘`)
+    } else {
+      setTime("剛剛")
     }
   },[diffWithYear, diffWithDay, diffWithHour, diffWithMinute])
 

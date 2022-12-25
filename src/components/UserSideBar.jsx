@@ -29,7 +29,7 @@ const buttonDatas = [
   },
 ];
 
-const UserSideBar = ({ loginUserId }) => {
+const UserSideBar = ({ loginUserId, onPostNew }) => {
   const navigate = useNavigate();
   const { pathname, state } = useLocation();
   const [activeItem, setActiveItem] = useState(0);
@@ -89,7 +89,7 @@ const UserSideBar = ({ loginUserId }) => {
           />
         );
       })}
-      <PostModal />
+      <PostModal onPostNew={onPostNew}/>
 
       <SideBarItem title="登出" path={'/logout'} iconName={'logout'} onClick={handleButtonClicked} className="mt-auto" />
     </div>

@@ -45,6 +45,7 @@ const AccountUpdate = () => {
       errorMessage: '內容不可空白',
       textLimit: '',
       value: '',
+      isPassword: true,
     },
     {
       title: '密碼再次確認',
@@ -55,6 +56,7 @@ const AccountUpdate = () => {
       errorMessage: '內容不可空白',
       textLimit: '',
       value: '',
+      isPassword: true,
     },
   ]);
 

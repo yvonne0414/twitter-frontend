@@ -4,7 +4,7 @@ import closeIcon from '../assets/imgs/icon/close_o.png';
 import { Avatar, Button } from './index';
 import { addPost } from '../apis/tweet';
 
-const PostModal = () => {
+const PostModal = ({onPostNew = null}) => {
   const [isShow, setIsShow] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [value, setValue] = useState('');
@@ -47,6 +47,7 @@ const PostModal = () => {
         setValue('');
         setErrorMsg('');
         toggleModal();
+        onPostNew?.();
       })
       .catch((errMsg) => {
         showNotification('wran', errMsg);
