@@ -81,6 +81,10 @@ const EditProfileModal = ({userInfo, inputDataList, onSave})=>{
         if(coverFile || (coverImg === "")){
             formData.append('cover', coverFile);
         }
+        if (coverImg === "") {
+            formData.append("deleteCover", 1);
+        }
+        
         if(avatarFile){
             formData.append('avatar', avatarFile);
         }
