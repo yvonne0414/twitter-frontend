@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="wraper">
       <NotifyContextProvider>
-        <BrowserRouter>
+        <BrowserRouter basename='/twitter-frontend'>
           <AuthProvider>
             <Routes>
               <Route path="/login" element={<LoginPage />} />
@@ -66,6 +66,7 @@ function App() {
                 }
               />
               <Route path="/main" element={<PostListPage />} />
+              <Route path="/" element={<PostListPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </AuthProvider>
