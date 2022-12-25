@@ -10,7 +10,7 @@ dayjs.locale('cn')
 
 const ReplyItem = ({replyInfo, postUser}) => {
   const [time, setTime] = useState('')
-  
+  const postUserAccount = JSON.parse(localStorage.getItem('userInfo'))?.account ?? "";
 
   const date1 = dayjs(replyInfo?.createdAt);
   const now = dayjs();
@@ -52,7 +52,7 @@ const ReplyItem = ({replyInfo, postUser}) => {
         </div>
         <div className='content-m-r'>
           <span className='text-secondary mr-2'>回覆</span>
-          <span className='text-brand'>@apple</span>
+          <span className='text-brand'>@{postUserAccount}</span>
         </div>
         <p className='content-l-r'>
           {replyInfo?.comment} 
