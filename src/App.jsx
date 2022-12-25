@@ -16,7 +16,6 @@ import {
 import { UserLayout } from './components';
 import { NotifyContextProvider } from './contexts/NotifyContext';
 import { AuthProvider } from './contexts/AuthContext';
-import AdminLayout from './components/AdminLayout';
 
 function App() {
   return (

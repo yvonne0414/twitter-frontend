@@ -101,3 +101,8 @@
     max-width: 1140px;
   }
 }
+@media screen and (min-width: 1408px) {
+  .wraper {
+    max-width: 1408px;
+  }
+}
