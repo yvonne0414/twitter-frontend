@@ -46,6 +46,7 @@ const requiredDatas = [
     errorMessage: '內容不可空白',
     textLimit: '',
     value: '',
+    isPassword: true,
   },
   {
     title: '確認密碼',
@@ -56,6 +57,7 @@ const requiredDatas = [
     errorMessage: '確認密碼不一致！',
     textLimit: '',
     value: '',
+    isPassword: true,
   },
 ];
 
