@@ -6,6 +6,7 @@ import { Avatar, ReplyModal } from './index';
 // api
 import { addLike, addUnlike } from '../apis/tweet';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
@@ -26,6 +27,7 @@ const PostMain = ({postInfo, onReplyAdded}) => {
     const [isLike, setIsLike] = useState(false);
     const [postTime, setPostTime] = useState('');
     const [time, setTime] = useState('');
+    const navigate = useNavigate();
 
     const date1 = dayjs(postInfo?.createdAt);
     const now = dayjs();
@@ -80,7 +82,9 @@ const PostMain = ({postInfo, onReplyAdded}) => {
     return (
         <div className='pb-5 px-4 border-b border-borderC mb-2 mt-4'>
           <div className='flex space-x-2'>
-            <Avatar imgUrl={postInfo?.User.avatar} />
+            <div className='cursor-pointer'  onClick={()=>{navigate(`/profile`, {state:{userId: postInfo?.User.id}})}}>
+              <Avatar imgUrl={postInfo?.User.avatar} />
+            </div>
             <div>
               <h6 className='content-l-b'>{postInfo?.User.name}</h6>
               <div className='content-m-r text-secondary'>@{postInfo?.User.account}</div>
