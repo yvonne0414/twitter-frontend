@@ -12,7 +12,7 @@ const tabList = [
     isActive: true,
   },
   {
-    title: '回復',
+    title: '回覆',
     tabid: 'profile-tab2',
     isActive: false,
   },
@@ -33,7 +33,7 @@ const ProfilePage = () => {
   const [isUserSelf, setIsUserSelf] = useState(false);
   const { showNotification } = useContext(notifyContext);
 
-  const loginUserId = JSON.parse(localStorage.getItem("userInfo")).id;
+  const loginUserId = JSON.parse(localStorage.getItem("userInfo"))?.id ?? -1;
 
   useLayoutEffect(() => {
     async function getInit() {
@@ -48,7 +48,6 @@ const ProfilePage = () => {
           console.log('errorMsg', errorMsg);
           showNotification('warn', errorMsg);
         });
-      
 
       // 是否是登入者
       if (Number(loginUserId) === Number(userId)) {
@@ -61,7 +60,7 @@ const ProfilePage = () => {
       const tweets = await getUserTweets(userId);
       setTweetList(tweets);
 
-      // 取得用戶回復推文
+      // 取得用戶回覆推文
       const replys = await getUserReplys(userId);
       let newReply = replys.map((replyInfo) => {
         let nReply = {};
@@ -137,23 +136,30 @@ const ProfilePage = () => {
       // console.log({coverImg, avatarImg });
       await putUserProfile(loginUserId, formData).then((res)=>{
           showNotification('success', '修改成功');
-          // console.log(res, res);
-          setNowUser({...nowUser, avatar: res.avatar, cover: res.cover})
-          let setUserLocal = {
-            id: 24,
-            account: "user3",
-            name:  res.name,
-            email: "user3@example.com",
-            avatar: res.avatar,
-            cover: res.cover,
-            introduction:  res.introduction,
-            role: "user",
-            createdAt: "2022-12-17T09:00:50.000Z",
-            updatedAt: "2022-12-17T09:00:50.000Z"
-          }
-          localStorage.setItem("userInfo", JSON.stringify(setUserLocal))
+          console.log(res);
+          const newUserData = { 
+            ...nowUser, 
+            avatar: res.avatar, 
+            cover: res.cover, 
+            introduction: res.introduction, 
+            name: res.name,
+           };
+          setNowUser(newUserData)
+          // let setUserLocal = {
+          //   id: 24,
+          //   account: "user3",
+          //   name:  res.name,
+          //   email: "user3@example.com",
+          //   avatar: res.avatar,
+          //   cover: res.cover,
+          //   introduction:  res.introduction,
+          //   role: "user",
+          //   createdAt: "2022-12-17T09:00:50.000Z",
+          //   updatedAt: "2022-12-17T09:00:50.000Z"
+          // }
+          localStorage.setItem('userInfo', JSON.stringify(newUserData));
       }).catch((err)=>{
-          showNotification('wran', err);
+          showNotification('warn', err);
       })
   }
 

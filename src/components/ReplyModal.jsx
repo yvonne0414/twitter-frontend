@@ -5,11 +5,11 @@ import { useContext, useState } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
 import { addReplies } from '../apis/tweet';
 
-const ReplyModal = ({postInfo, iconStyle="w-[14px] h-[14px]", time}) => {
+const ReplyModal = ({postInfo, iconStyle="w-[14px] h-[14px]", time, onReplyAdded = null}) => {
   const [isShow, setIsShow] = useState(false);
   const [value, setValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const loginAvatar = JSON.parse(localStorage.getItem("userInfo")).avatar;
+  const loginAvatar = JSON.parse(localStorage.getItem("userInfo"))?.avatar;
 
   function handleValueChange(e){
     let lineHeight = 15;
@@ -44,9 +44,10 @@ const ReplyModal = ({postInfo, iconStyle="w-[14px] h-[14px]", time}) => {
       return
     }
 
-    await addReplies(postInfo.id, value).then((e)=>{
+    await addReplies(postInfo.id, value).then((res)=>{
       showNotification('success', '回覆成功');
       toggleModal();
+      onReplyAdded?.(res);
     }).catch((errMsg)=>{
       showNotification('wran', errMsg)
     })

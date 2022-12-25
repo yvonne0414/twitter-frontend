@@ -25,7 +25,7 @@ const TextWithNumber = ({ text, number }) => {
 const AdminUserItem = ({ userInfo, style }) => {
   return (
     <div className={`relative w-[249px] h-[314px] bg-[#F6F7F8] rounded-[10px] ml-4 ${style}`}>
-      <img src={userInfo.cover} className={`w-full h-[140px] bg-dark-80 rounded-t-[10px]`} />
+      <img src={userInfo.cover} className={`w-full h-[140px] bg-dark-80 rounded-t-[10px] object-cover`} />
       <img src={userInfo.avatar} className={`absolute w-[100px] h-[100px] bg-dark-100 border-2 rounded-full left-[73.99px] top-[64px]`} />
       <div className={`mt-8 w-full text-center content-l-b text-ellipsis overflow-hidden pl-4 pr-4`}>{userInfo.name}</div>
       <div className={`w-full text-center content-m-r text-ellipsis overflow-hidden pl-4 pr-4 text-secondary`}>{`@${userInfo.account}`}</div>

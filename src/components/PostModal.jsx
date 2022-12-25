@@ -59,7 +59,7 @@ const PostModal = () => {
         <Button onClick={toggleModal} iconName={'post_w'} textStyle={`h-10 w-10 px-[8px] py-[8px] text-center`} />
       </div>
       <Button onClick={toggleModal} text={'推文'} textStyle={`hidden md:block text-xl`} />
-      <div className={`fixed top-0 left-0 h-screen w-screen bg-dark-100 bg-opacity-60 ${!isShow && 'hidden'}`}>
+      <div className={`fixed z-10 top-0 left-0 h-screen w-screen bg-dark-100 bg-opacity-60 ${!isShow && 'hidden'}`}>
         <div className="bg-dark-0 rounded-2xl absolute top-14 left-1/2 translate-x-[-50%] w-1/2 min-w-[600px]">
           {/* header */}
           <div className="border-b border-borderC p-5">

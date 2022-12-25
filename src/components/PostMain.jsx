@@ -22,7 +22,7 @@ const IconWraper = ({imgUrl, style="w-[25px] h-[25px]"}) => {
   )
 };
 
-const PostMain = ({postInfo}) => {
+const PostMain = ({postInfo, onReplyAdded}) => {
     const [isLike, setIsLike] = useState(false);
     const [postTime, setPostTime] = useState('');
     const [time, setTime] = useState('');
@@ -91,12 +91,12 @@ const PostMain = ({postInfo}) => {
           </p>
           <div className='content-m-b text-secondary'>{postTime}</div>
           <div className='py-4 mt-2 border-y border-borderC font-medium text-[19px]'>
-            <span className='mr-6 text-secondary '><em className='font-extrabold  text-dark-100'>{postInfo?.replyCount}</em> 回復</span>
+            <span className='mr-6 text-secondary '><em className='font-extrabold  text-dark-100'>{postInfo?.replyCount}</em> 回覆</span>
             <span className='text-secondary'><em className='font-extrabold text-dark-100'>{postInfo?.likeCount}</em> 喜愛次數</span>
           </div>
           <div className="flex space-x-24 mt-5">
             <div className='flex space-x-2 items-center cursor-pointer'>
-              <ReplyModal postInfo={postInfo} iconStyle='w-[25px] h-[25px]' time={time} />
+              <ReplyModal postInfo={postInfo} iconStyle='w-[25px] h-[25px]' time={time} onReplyAdded={onReplyAdded} />
             </div>
             <div className='flex space-x-2 items-center cursor-pointer' onClick={handleLike}>
               {

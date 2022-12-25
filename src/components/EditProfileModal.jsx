@@ -63,8 +63,14 @@ const EditProfileModal = ({userInfo, inputDataList, onSave})=>{
                 element.errorMessage = '此欄位必填！';
                 isError = true;
             }
+            if (element.textLimit && element.value && element.value.length > element.textLimit) {
+                element.invalid = true;
+                element.errorMessage = '字數超出限制';
+                isError = true;
+            }
             setInputsData(cloneData);
         }
+        
         let formData = new FormData();
         formData.append('name', inputsData[0].value);
         formData.append('introduction', inputsData[1].value);

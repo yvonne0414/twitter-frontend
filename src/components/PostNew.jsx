@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
 import { addPost } from '../apis/tweet';
 
-const PostNew = () => {
+const PostNew = ({onPostNew = null}) => {
   const [value, setValue] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -41,6 +41,7 @@ const PostNew = () => {
       showNotification('success', '推文成功');
       setValue("");
       setErrorMsg("");
+      onPostNew?.();
     }).catch((errMsg)=>{
       showNotification('wran', errMsg)
     })

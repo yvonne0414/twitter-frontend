@@ -23,7 +23,6 @@ const AdminPostItem = ({ postInfo, onDelete }) => {
   const [time, setTime] = useState('');
   const navigate = useNavigate();
 
-
   // const date1 = dayjs('2022-12-17T09:00:51.000Z');
   const date1 = dayjs(postInfo?.createdAt);
   const now = dayjs();
@@ -45,7 +44,7 @@ const AdminPostItem = ({ postInfo, onDelete }) => {
   }, [diffWithYear, diffWithDay, diffWithHour, diffWithMinute]);
 
   function handleDeleteButtonClicked() {
-    onDelete(postInfo.id)
+    onDelete(postInfo.id);
   }
 
   return (
@@ -55,27 +54,12 @@ const AdminPostItem = ({ postInfo, onDelete }) => {
         <div className="flex space-x-2 items-center">
           <h6 className="content-l-b">{postInfo?.User.name}</h6>
           <div className="content-m-r text-secondary">
-            <span
-              className="cursor-pointer"
-              onClick={() => {
-                navigate(`/profile`, { state: { userId: postInfo?.User.id } });
-              }}
-            >
-              @{postInfo?.User.account}
-            </span>
-            ・{time}
+            <span className="cursor-pointer">@{postInfo?.User.account}</span>・{time}
           </div>
         </div>
-        <p
-          className="content-l-r mb-2 cursor-pointer min-h-[52px]"
-          onClick={() => {
-            navigate(`/post/${postInfo?.id}`);
-          }}
-        >
-          {postInfo?.description.substring(0, 50)}
-        </p>
+        <p className="content-l-r mb-2 cursor-pointer min-h-[52px]">{postInfo?.description.substring(0, 50)}</p>
       </div>
-      <IconWraper imgUrl={deleteIcon} style="w-[15px] h-[15px] absolute top-[21.5px] right-[4.63px]" onClick={handleDeleteButtonClicked}/>
+      <IconWraper imgUrl={deleteIcon} style="w-[15px] h-[15px] absolute top-[21.5px] right-[4.63px]" onClick={handleDeleteButtonClicked} />
     </div>
   );
 };

@@ -36,7 +36,7 @@ const AdminPostListPage = () => {
       page: nextPage,
       limit: limit,
     });
-    console.log(result);
+    console.log(nextPage, result);
     if (result.status === 'error') {
       showNotification('error', result.message);
     }

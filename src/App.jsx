@@ -66,14 +66,7 @@ function App() {
                   </UserLayout>
                 }
               />
-              <Route
-                path="/main"
-                element={
-                  <UserLayout>
-                    <PostListPage />
-                  </UserLayout>
-                }
-              />
+              <Route path="/main" element={<PostListPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </AuthProvider>
