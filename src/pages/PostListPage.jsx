@@ -13,6 +13,18 @@ const PostListPage = () => {
     getPosts();
   }, []);
 
+  function handleReplyAdded(res) {
+    console.log(res);
+    console.log(postList);
+    const newPostList = postList.map((post)=>{
+      if (Number(post.id) === Number(res.TweetId)){
+        post.replyCount++
+      }
+      return post;
+    })
+    setPostList(newPostList);
+  }
+
   async function getPosts() {
     const posts = await getPostlist({
       page: 1,
@@ -49,7 +61,7 @@ const PostListPage = () => {
     <UserLayout onScrollToBottom={handleScrollToButton} onPostNew={handlePostNew}>
       <Navbar title={'首頁'} />
       <PostNew onPostNew={handlePostNew} />
-      {isLoading ? <Loading /> : <PostCollection postList={postList} />}
+      {isLoading ? <Loading /> : <PostCollection postList={postList} onReplyAdded={handleReplyAdded} />}
     </UserLayout>
   );
 };
