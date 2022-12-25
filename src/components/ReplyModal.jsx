@@ -45,6 +45,7 @@ const ReplyModal = ({postInfo, iconStyle="w-[14px] h-[14px]", time, onReplyAdded
     }
 
     await addReplies(postInfo.id, value).then((res)=>{
+      setValue('');
       showNotification('success', '回覆成功');
       toggleModal();
       onReplyAdded?.(res);
@@ -90,7 +91,7 @@ const ReplyModal = ({postInfo, iconStyle="w-[14px] h-[14px]", time, onReplyAdded
             </div>
             <div className='w-100 flex'>
               <Avatar imgUrl={loginAvatar} />
-              <textarea className='grow  heading-h5 px-2 py-3 appearance-none resize-none overflow-hidden focus:outline-none' placeholder='推你的回覆' onChange={handleValueChange}></textarea>
+              <textarea className='grow  heading-h5 px-2 py-3 appearance-none resize-none overflow-hidden focus:outline-none' placeholder='推你的回覆' value={value} onChange={handleValueChange}></textarea>
             </div>
           </div>
           {/* footer */}

@@ -20,7 +20,7 @@ const IconWraper = ({imgUrl, style="w-[14px] h-[14px]"}) => {
   )
 };
 
-const PostItem = ({postInfo}) => {
+const PostItem = ({postInfo, onReplyAdded}) => {
   const [isLike, setIsLike] = useState(false)
   const [time, setTime] = useState('')
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ const PostItem = ({postInfo}) => {
         </p>
         <div className="flex space-x-9 text-[14px] leading-[14px] font-semibold text-secondary">
           <div className='flex space-x-2 items-center cursor-pointer'>
-            <ReplyModal postInfo={postInfo} time={time}/>
+            <ReplyModal postInfo={postInfo} time={time} onReplyAdded={onReplyAdded} />
             <div>{postInfo?.replyCount}</div>
           </div>
           <div className='flex space-x-2 items-center cursor-pointer' onClick={handleLike}>
