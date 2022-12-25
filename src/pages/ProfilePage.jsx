@@ -136,8 +136,14 @@ const ProfilePage = () => {
       // console.log({coverImg, avatarImg });
       await putUserProfile(loginUserId, formData).then((res)=>{
           showNotification('success', '修改成功');
-          // console.log(res, res);
-          const newUserData = { ...nowUser, avatar: res.avatar, cover: res.cover };
+          console.log(res);
+          const newUserData = { 
+            ...nowUser, 
+            avatar: res.avatar, 
+            cover: res.cover, 
+            introduction: res.introduction, 
+            name: res.name,
+           };
           setNowUser(newUserData)
           // let setUserLocal = {
           //   id: 24,
