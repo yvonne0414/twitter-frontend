@@ -74,7 +74,9 @@ const PostItem = ({postInfo}) => {
 
   return (
     <div className='flex py-4 pl-6 pr-[29px] border-b border-borderC'>
-      <Avatar imgUrl={postInfo?.User.avatar} />
+      <div className='cursor-pointer'  onClick={()=>{navigate(`/profile`, {state:{userId: postInfo?.User.id}})}}>
+        <Avatar imgUrl={postInfo?.User.avatar} />
+      </div>
       <div className='ml-2'>
         <div className='flex space-x-2 items-center'>
           <h6 className='content-l-b'>{postInfo?.User.name}</h6>

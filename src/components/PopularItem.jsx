@@ -42,7 +42,9 @@ const PopularItem = ({userInfo}) => {
 
     return (
         <div className="w-100 h-20 min-w-[273px] flex items-center justify-between p-4" >
-            <Avatar style="mr-2" imgUrl={userInfo?.avatar}></Avatar>
+            <div className='cursor-pointer' onClick={()=>{navigate(`/profile`, {state:{userId: userInfo?.id}})}}>
+                <Avatar style="mr-2" imgUrl={userInfo?.avatar}></Avatar>
+            </div>
             <div className='grow' >
                 <div className='content-l-b text-ellipsis overflow-hidden ... max-w-[83px]'>{userInfo?.name}</div>
                 <div className='content-m-r text-dark-70 text-ellipsis overflow-hidden ... max-w-[83px] cursor-pointer' onClick={()=>{navigate(`/profile`, {state:{userId: userInfo?.id}})}}>@{userInfo?.account}</div>
