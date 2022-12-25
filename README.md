@@ -1,9 +1,9 @@
-## twitter-frontend
+## Simple Twitter專案＿Alphitter
 歡迎來到Alphitter！
 在這個社交媒體網站，你可以分享自己的即時消息或心情想法，也可以認識其他的使用者並且進行互動！
 與其他人的生活連結就是這麼簡單:)
 
-GitHubPage 網址：https://yvonne0414.github.io/login
+GitHubPage 網址：https://yvonne0414.github.io/twitter-frontend
 
 ## 種子資料設計  
 **一般使用者 5位** 
