@@ -26,6 +26,7 @@ const requiredDatas = [
     errorMessage: '內容不可空白',
     textLimit: '',
     value: '',
+    isPassword: true,
   },
 ];
 
