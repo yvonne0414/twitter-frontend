@@ -2,7 +2,7 @@ import { PopularCollection, UserSideBar } from '../components';
 import { useEffect, useState } from 'react';
 import { getUserTop10 } from '../apis/user';
 
-const UserLayout = ({ children, onScrollToBottom = null }) => {
+const UserLayout = ({ children, onScrollToBottom = null, onPostNew}) => {
   const [userTop10, setUserTop10] = useState([]);
   const loginUserId = JSON.parse(localStorage.getItem('userInfo'))?.id ?? -1;
 
@@ -25,7 +25,7 @@ const UserLayout = ({ children, onScrollToBottom = null }) => {
   return (
     <div className="flex justify-between">
       <aside className="h-screen pt-4">
-        <UserSideBar loginUserId={loginUserId} />
+      <UserSideBar loginUserId={loginUserId} onPostNew={onPostNew} />
       </aside>
       <main onScroll={handleScroll} className="h-screen overflow-auto border-x border-borderC mx-6 grow">{children}</main>
       <aside className="h-screen py-4">

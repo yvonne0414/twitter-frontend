@@ -46,9 +46,9 @@ const PostListPage = () => {
     getPosts();
   }
   return (
-    <UserLayout onScrollToBottom={handleScrollToButton}>
+    <UserLayout onScrollToBottom={handleScrollToButton} onPostNew={handlePostNew}>
       <Navbar title={'首頁'} />
-      <PostNew onPostNew={handlePostNew}/>
+      <PostNew onPostNew={handlePostNew} />
       {isLoading ? <Loading /> : <PostCollection postList={postList} />}
     </UserLayout>
   );
