@@ -28,7 +28,7 @@ const PopularItem = ({userInfo, onFollowStateChanged = null}) => {
                 id: userInfo.id
             }).then(()=>{
                 setIsFollowing(!isFollowing);
-                onFollowStateChanged?.({ userId: userInfo.id, isFollowing: !isFollowing });
+                onFollowStateChanged?.({ targetUserId: userInfo.id, isFollowing: !isFollowing });
             }).catch((errorMsg)=>{
                 showNotification('warn', errorMsg)
             });

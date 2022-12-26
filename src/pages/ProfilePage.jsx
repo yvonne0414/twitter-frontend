@@ -164,12 +164,15 @@ const ProfilePage = () => {
   }
 
   function handleFollowStateChanged({targetUserId, isFollowing}) {
+    console.log("123", targetUserId, nowUser.id)
     if (isUserSelf) {
       if (isFollowing) {
         setNowUser({...nowUser, followingCount: nowUser.followingCount + 1});
       } else {
         setNowUser({ ...nowUser, followingCount: nowUser.followingCount - 1 });
       }
+    } else if (targetUserId === nowUser.id) {
+      setNowUser({ ...nowUser, isFollowed: isFollowing});
     }
   }
 

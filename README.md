@@ -46,11 +46,6 @@ password: 12345678
  * uuid: 9.0.0
  * web-vitals: 2.1.4
 
-
-## VScode 
-需下載 "Prettier ESLint"並選其作為格式化工具
-
-
 ## 專案安裝流程：
 
 ### `nvm i 16.15.0`
@@ -65,6 +60,9 @@ use node v16.15.0
 
 to install all dist in this project
 
+## VScode 
+需下載 **"Prettier ESLint"**並選其作為格式化工具
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -72,3 +70,11 @@ Open [http://localhost:3000] to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+## `control + C`
+ 即可退出專案
+
+
+## 專案開發人員
+前端：小庭Shiori ＆ Yvonne
+後端：Verna & Elena
