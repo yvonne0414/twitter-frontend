@@ -1,5 +1,5 @@
 import './global.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import {
   PostListPage,
   LoginPage,
@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="wraper">
       <NotifyContextProvider>
-        <BrowserRouter basename='/twitter-frontend'>
+        <HashRouter>
           <AuthProvider>
             <Routes>
               <Route path="/login" element={<LoginPage />} />
@@ -54,7 +54,7 @@ function App() {
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </AuthProvider>
-        </BrowserRouter>
+        </HashRouter>
       </NotifyContextProvider>
     </div>
   );
