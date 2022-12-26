@@ -1,4 +1,4 @@
-import { Navbar, Loading, Tabs, ReplyCollection, PostCollection, ProfileMain } from '../components';
+import { Navbar, Loading, Tabs, ReplyCollection, PostCollection, ProfileMain, UserLayout } from '../components';
 import { getUser, getUserTweets, getUserReplys, getUserLikes, putUserProfile } from '../apis/user';
 import { addFollow, deleteFollow } from '../apis/followship';
 import { useLocation } from 'react-router-dom';
@@ -163,8 +163,18 @@ const ProfilePage = () => {
       })
   }
 
+  function handleFollowStateChanged({targetUserId, isFollowing}) {
+    if (isUserSelf) {
+      if (isFollowing) {
+        setNowUser({...nowUser, followingCount: nowUser.followingCount + 1});
+      } else {
+        setNowUser({ ...nowUser, followingCount: nowUser.followingCount - 1 });
+      }
+    }
+  }
+
   return (
-    <>
+    <UserLayout onFollowStateChanged={handleFollowStateChanged}>
       {isLoading ? (
         <Loading />
       ) : (
@@ -178,7 +188,7 @@ const ProfilePage = () => {
           </Tabs>
         </>
       )}
-    </>
+    </UserLayout>
   );
 };
 export default ProfilePage;

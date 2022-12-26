@@ -5,7 +5,7 @@ import { addFollow, deleteFollow } from '../apis/followship';
 import { useContext } from 'react';
 import { notifyContext } from '../contexts/NotifyContext';
 
-const PopularItem = ({userInfo}) => {
+const PopularItem = ({userInfo, onFollowStateChanged = null}) => {
     const [buttonText, setButtonText] = useState('跟隨')
     const [isFollowing, setIsFollowing] = useState(userInfo?.isFollowed)
 
@@ -28,12 +28,14 @@ const PopularItem = ({userInfo}) => {
                 id: userInfo.id
             }).then(()=>{
                 setIsFollowing(!isFollowing);
+                onFollowStateChanged?.({ userId: userInfo.id, isFollowing: !isFollowing });
             }).catch((errorMsg)=>{
                 showNotification('warn', errorMsg)
             });
         } else {
             await deleteFollow(userInfo.id).then(()=>{
                 setIsFollowing(!isFollowing);
+                onFollowStateChanged?.({ targetUserId: userInfo.id, isFollowing: !isFollowing });
             }).catch((errorMsg)=>{
                 showNotification('warn', errorMsg)
             });

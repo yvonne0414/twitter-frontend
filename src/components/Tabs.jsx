@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-const Tabs = ({tabList, children}) => {
+const Tabs = ({tabList, children, setTabList=null}) => {
     const [local, setLocal] = useState("");
     
     
@@ -23,10 +23,12 @@ const Tabs = ({tabList, children}) => {
         setLocal(e.target.dataset.tabid)
         tabList.map((tabItem)=>{
             if(tabItem.tabid === e.target.dataset.tabid){
-                return tabItem.isActive = true;
+                tabItem.isActive = true;
+            } else {
+                tabItem.isActive = false;   
             }
-            return tabItem.isActive = false;
         })
+        setTabList?.(tabList);
     }
 
     return (
