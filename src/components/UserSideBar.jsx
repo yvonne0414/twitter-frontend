@@ -64,7 +64,7 @@ const UserSideBar = ({ loginUserId, onPostNew }) => {
     setActiveItem('');
     buttonDatas.forEach((btn) => {
       if (pathname === '/profile') {
-        Number(state.userId) === Number(loginUserId) && setActiveItem(1);
+        Number(state?.userId || -1) === Number(loginUserId) && setActiveItem(1);
         return;
       }
       if (pathname === btn.path) {

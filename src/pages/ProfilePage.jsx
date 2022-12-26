@@ -24,7 +24,7 @@ const tabList = [
 ];
 
 const ProfilePage = () => {
-  const { userId } = useLocation().state;
+  const { userId } = useLocation().state || 0;
   const [nowUser, setNowUser] = useState({});
   const [tweetList, setTweetList] = useState([]);
   const [replyList, setReplyList] = useState([]);
