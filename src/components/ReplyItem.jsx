@@ -52,7 +52,7 @@ const ReplyItem = ({replyInfo, postUser}) => {
         </div>
         <div className='content-m-r'>
           <span className='text-secondary mr-2'>回覆</span>
-          <span className='text-brand'>@{postUserAccount}</span>
+          <span className='text-brand'>@{replyInfo?.UserAccount ?? ""}</span>
         </div>
         <p className='content-l-r'>
           {replyInfo?.comment} 
