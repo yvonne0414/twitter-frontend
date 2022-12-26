@@ -2,7 +2,7 @@ import { PopularCollection, UserSideBar } from '../components';
 import { useEffect, useState } from 'react';
 import { getUserTop10 } from '../apis/user';
 
-const UserLayout = ({ children, onScrollToBottom = null, onPostNew}) => {
+const UserLayout = ({ children, onScrollToBottom = null, onPostNew, onFollowStateChanged}) => {
   const [userTop10, setUserTop10] = useState([]);
   const loginUserId = JSON.parse(localStorage.getItem('userInfo'))?.id ?? -1;
 
@@ -29,7 +29,7 @@ const UserLayout = ({ children, onScrollToBottom = null, onPostNew}) => {
       </aside>
       <main onScroll={handleScroll} className="h-screen overflow-auto border-x border-borderC mx-6 grow">{children}</main>
       <aside className="h-screen py-4">
-        <PopularCollection title={'推薦追蹤'} userInfoList={userTop10} />
+        <PopularCollection title={'推薦追蹤'} userInfoList={userTop10} onFollowStateChanged={onFollowStateChanged} />
       </aside>
     </div>
   );

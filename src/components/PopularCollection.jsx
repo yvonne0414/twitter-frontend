@@ -1,6 +1,6 @@
 import { PopularItem } from './index';
 
-const PopularCollection = ({title, userInfoList}) => {
+const PopularCollection = ({title, userInfoList, onFollowStateChanged}) => {
 
     return (
         <div className='bg-dark-20 overflow-hidden rounded-2xl min-w-[273px] w-full h-full'>
@@ -10,7 +10,7 @@ const PopularCollection = ({title, userInfoList}) => {
             <div className='overflow-auto h-full'>
                 {
                     userInfoList.map((userInfo)=>{
-                        return <PopularItem userInfo={userInfo} key={userInfo.id}/>
+                        return <PopularItem userInfo={userInfo} key={userInfo.id} onFollowStateChanged={onFollowStateChanged}/>
                     })
                 }
             </div>

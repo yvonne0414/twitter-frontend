@@ -1,5 +1,5 @@
 // components
-import { Navbar, Tabs, FollowCollection } from '../components';
+import { Navbar, Tabs, FollowCollection, UserLayout } from '../components';
 // api
 import { getUser, getUserfollowers, getUserfollowings } from '../apis/user';
 import { useEffect, useState } from 'react';
@@ -42,29 +42,29 @@ const ProfileFollowPage = () => {
             setFollowerList(followers)
         }
         getfollowers(userId);
-
-        // 正在跟隨
-        async function getfollowings(userId){
-            const followings = await getUserfollowings(userId);
-            setFollowingList(followings)
-        }
         getfollowings(userId);
-
     },[userId])
 
 
-    
+  // 正在跟隨
+  async function getfollowings(userId){
+      const followings = await getUserfollowings(userId);
+      setFollowingList(followings)
+  }
 
+  function handleFollowStateChanged() {
+    getfollowings(userId)
+  }
 
 
   return (
-    <>
+    <UserLayout onFollowStateChanged={handleFollowStateChanged}>
       <Navbar title={nowUser?.name} haveBack={true} subtitle={`${nowUser?.tweetCount}推文`} />
       <Tabs tabList={tabList}>
         <FollowCollection tabid={"follow-tab1"} followList={followerList} key={"follow-tab1"} />
         <FollowCollection tabid={"follow-tab2"} followList={followingList} key={"follow-tab2"} />
       </Tabs>
-    </>
+    </UserLayout>
   );
 };
 export default ProfileFollowPage;

@@ -39,24 +39,8 @@ function App() {
                   </UserLayout>
                 }
               />
-              <Route
-                path="/profile"
-                exact
-                element={
-                  <UserLayout>
-                    <ProfilePage />
-                  </UserLayout>
-                }
-              />
-              <Route
-                path="/profile/follow"
-                exact
-                element={
-                  <UserLayout>
-                    <ProfileFollowPage />
-                  </UserLayout>
-                }
-              />
+              <Route path="/profile" exact element={<ProfilePage />} />
+              <Route path="/profile/follow" exact element={<ProfileFollowPage />} />
               <Route
                 path="/setting"
                 element={
