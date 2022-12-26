@@ -67,7 +67,9 @@ const ProfilePage = () => {
         nReply['id'] = replyInfo.id;
         nReply['comment'] = replyInfo.comment;
         nReply['UserId'] = replyInfo.Tweet.UserId;
-        nReply['UserAccount'] = replyInfo.Tweet?.postUserAccount;
+        nReply['Tweet'] = {
+          postUserAccount: replyInfo.Tweet?.postUserAccount,
+        };
         nReply['createdAt'] = replyInfo.Tweet.createdAt;
         nReply['User'] = {
           avatar: user.avatar,

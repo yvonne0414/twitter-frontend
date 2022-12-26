@@ -32,6 +32,9 @@ const PostDetailPage = () => {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'))
     const newReply = {
       ...res,
+      Tweet: {
+        postUserAccount: postInfo.User.account,
+      },
       User: {
         id: userInfo?.id,
         account: userInfo?.account,
