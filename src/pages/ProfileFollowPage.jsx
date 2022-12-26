@@ -13,7 +13,8 @@ const ProfileFollowPage = () => {
     const [followerList, setFollowerList] = useState([]);
     const [followingList, setFollowingList] = useState([]);
 
-    const tabList = [
+    // const tabList = 
+    const [tabList, setTabList] = useState([
         {
             title: "跟隨者",
             tabid: "follow-tab1",
@@ -24,7 +25,7 @@ const ProfileFollowPage = () => {
             tabid: "follow-tab2",
             isActive: (tabid === "follow-tab2")
         }
-    ]
+    ])
 
 
     useEffect(()=>{
@@ -53,7 +54,7 @@ const ProfileFollowPage = () => {
   }
 
   function handleFollowStateChanged() {
-    getfollowings(userId)
+    getfollowings(userId);
   }
 
 
