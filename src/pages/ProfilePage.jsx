@@ -95,7 +95,7 @@ const ProfilePage = () => {
           avatar: likeInfo.Tweet?.User?.avatar,
           name: likeInfo.Tweet?.User?.name,
           account: likeInfo.Tweet?.User?.account,
-          id: likeInfo.Tweet?.User?.Id,
+          id: likeInfo.Tweet?.User?.id,
         };
         return nLike;
       });
