@@ -62,6 +62,7 @@ const ProfilePage = () => {
 
       // 取得用戶回覆推文
       const replys = await getUserReplys(userId);
+      console.log("reply", replys)
       let newReply = replys.map((replyInfo) => {
         let nReply = {};
         nReply['id'] = replyInfo.id;
@@ -70,7 +71,7 @@ const ProfilePage = () => {
         nReply['Tweet'] = {
           postUserAccount: replyInfo.Tweet?.postUserAccount,
         };
-        nReply['createdAt'] = replyInfo.Tweet.createdAt;
+        nReply['createdAt'] = replyInfo.createdAt;
         nReply['User'] = {
           avatar: user.avatar,
           name: user.name,
