@@ -67,6 +67,7 @@ const ProfilePage = () => {
         nReply['id'] = replyInfo.id;
         nReply['comment'] = replyInfo.comment;
         nReply['UserId'] = replyInfo.Tweet.UserId;
+        nReply['UserAccount'] = replyInfo.Tweet?.postUserAccount;
         nReply['createdAt'] = replyInfo.Tweet.createdAt;
         nReply['User'] = {
           avatar: user.avatar,
@@ -80,9 +81,8 @@ const ProfilePage = () => {
 
       // 取得用戶喜愛推文
       const likes = await getUserLikes(userId);
+      console.log(likes)
       let newLikes = likes.map((likeInfo) => {
-        console.log(likeInfo);
-        console.log(likeInfo.Tweet.User)
         let nLike = {};
         nLike['id'] = likeInfo.TweetId;
         nLike['description'] = likeInfo.Tweet.description;
