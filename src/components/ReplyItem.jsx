@@ -10,7 +10,6 @@ dayjs.locale('cn')
 
 const ReplyItem = ({replyInfo, postUser}) => {
   const [time, setTime] = useState('')
-  const postUserAccount = JSON.parse(localStorage.getItem('userInfo'))?.account ?? "";
 
   const date1 = dayjs(replyInfo?.createdAt);
   const now = dayjs();
@@ -37,6 +36,8 @@ const ReplyItem = ({replyInfo, postUser}) => {
       setTime(`${diffWithHour}小時`)
     } else if(diffWithMinute){
       setTime(`${diffWithMinute}分鐘`)
+    } else {
+      setTime(`剛剛`)
     }
   },[diffWithYear, diffWithDay, diffWithHour, diffWithMinute])
   
@@ -52,7 +53,7 @@ const ReplyItem = ({replyInfo, postUser}) => {
         </div>
         <div className='content-m-r'>
           <span className='text-secondary mr-2'>回覆</span>
-          <span className='text-brand'>@{replyInfo?.UserAccount ?? ""}</span>
+          <span className='text-brand'>@{replyInfo?.Tweet?.postUserAccount ?? ""}</span>
         </div>
         <p className='content-l-r'>
           {replyInfo?.comment} 
