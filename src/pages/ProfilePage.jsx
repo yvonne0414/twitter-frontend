@@ -81,18 +81,21 @@ const ProfilePage = () => {
       // 取得用戶喜愛推文
       const likes = await getUserLikes(userId);
       let newLikes = likes.map((likeInfo) => {
+        console.log(likeInfo);
+        console.log(likeInfo.Tweet.User)
         let nLike = {};
         nLike['id'] = likeInfo.TweetId;
         nLike['description'] = likeInfo.Tweet.description;
         // TODO 待Api
         nLike['isLiked'] = true;
-        nLike['likeCount'] = 1;
-        nLike['replyCount'] = 3;
+        nLike['likeCount'] = likeInfo.Tweet?.likeCount ?? 1;
+        nLike['replyCount'] = likeInfo.Tweet?.replyCount ?? 3;
+        nLike['createdAt'] = likeInfo.Tweet?.createdAt;
         nLike['User'] = {
-          avatar: user.avatar,
-          name: user.name,
-          account: user.account,
-          id: userId,
+          avatar: likeInfo.Tweet?.User?.avatar,
+          name: likeInfo.Tweet?.User?.name,
+          account: likeInfo.Tweet?.User?.account,
+          id: likeInfo.Tweet?.User?.Id,
         };
         return nLike;
       });
